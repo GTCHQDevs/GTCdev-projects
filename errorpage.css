@@ -1,0 +1,12 @@
+body{
+  display: inline-block;
+  text-align: center;
+}
+.title{
+  font-weight: bolder;
+  font-size: 60px;
+}
+p {
+  margin: 40px;
+  font-size: 20px;
+}

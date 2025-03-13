@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coin Flip</title>
+</head>
+<body>
+  <button 
+    style="
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    border-style: solid;
+    border-color: goldenrod;
+    background-color: gold;
+    "
+    onclick=" 
+     flip();
+    ">
+    Flip Coin
+  </button>
+  <script>
+
+    function flip (){
+      const coinFlip = Math.random()
+      let computerMove = '';
+     if (coinFlip >= 0 && coinFlip < 0.5) { 
+      computerMove = 'heads'
+    } else if (coinFlip >= 0.5 && coinFlip < 1) {
+      computerMove = 'tails'}
+      console.log(computerMove);
+     alert(`Computer picked ${computerMove}`)
+    };
+    
+  </script>
+</body>
+</html>
