@@ -5,7 +5,6 @@ body{
   header{
   display: flex;
   flex-direction: column;
-
 }
 .banner{
   display: flex;
@@ -14,35 +13,42 @@ body{
 }
 
 .h-left{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-color: #afacb6;
+  display: flex;
+  flex: 1;
+  background-color: lightblue;
   font-weight: 800;
-  color: #ffd700;
   width:384px;
 }
 .hlci{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding-top: 5px;
   padding-bottom: 5px;
-  width:192px;
+  width:1920px;
   font-size: 22px;
   margin: 0;
   text-align: center;
 }
 .h-middle{
-  background-color: #afacb6;
+  background-color: lightpink;
   flex: 1;
 }
 .h-right{
-  background-color: lightgreen;
+  display: flex;
+  align-items: center;
+  background-color: lightblue;
   width:64px;
 }
  nav{
-  background-color: #bae6f6;
+  background-color: lightcoral;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   height: 40px;
+  padding-left:50px;
+  padding-right: 50px;
 
 }
 main{
@@ -52,17 +58,29 @@ main{
 footer{
   display: flex;
   flex-direction: row;
-  height: 256px;
+  height: 272px;
+  width: 100%;
 }
+
+.temporary-logo{
+  display: flex;
+  width: 100%;
+}
+
 .f-left{
+  display: flex;
+  flex-direction: column;
   background-color: lightblue;
-  flex: 1;
+  text-align: center;
+  align-items: center;
+  justify-content: center; 
+  flex: 1.5;
 }
 .f-middle{
-  background-color: lightgreen;
+  background-color: lightpink;
   flex: 1;
 }
 .f-right{
-  background-color: lightseagreen;
+  background-color: lightblue;
   flex: 1;
 }
