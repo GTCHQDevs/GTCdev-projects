@@ -32,7 +32,6 @@ body{
   text-align: center;
 }
 .h-middle{
-  background-color: lightpink;
   flex: 1;
 }
 .h-right{
@@ -42,7 +41,8 @@ body{
   width:64px;
 }
  nav{
-  background-color: lightcoral;
+  position: fixed;
+  top: 0;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
