@@ -1,8 +1,7 @@
 footer{
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  background-color: #9b1b30;
+  color: #e6f7ff;
+  position: relative;
   display: flex;
   flex-direction: row;
   height: 272px;
@@ -12,22 +11,55 @@ footer{
 .temporary-logo{
   display: flex;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .f-left{
   display: flex;
   flex-direction: column;
-  background-color: lightblue;
+  flex-wrap: nowrap;
+  background-color: #9b1b30;
   text-align: center;
   align-items: center;
-  justify-content: center; 
+  justify-content:center; 
   flex: 1.5;
+  min-width: 300px;
 }
 .f-middle{
-  background-color: lightpink;
+  background-color: #9b1b30;
   flex: 1;
+  width: 625px;
 }
 .f-right{
-  background-color: lightblue;
+  background-color: #9b1b30;
   flex: 1;
+  width: 500px;
 }
+.socials{
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.scpic{
+  width: 37.5px;
+  background-color: rgb(241, 233, 233);
+  -webkit-mask-size: cover;
+  mask-size:cover
+} 
+.socials{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.scpic{
+  width: 37.5px;
+  height: 37.5px;
+  background-color: transparent;
+  filter: invert(91%) sepia(6%) hue-rotate(162deg) saturate(456%) brightness(110%);
+  
+} 
+

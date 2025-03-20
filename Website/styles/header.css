@@ -3,13 +3,15 @@ body{
   font-family: arial;
 }
   header{
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
   display: flex;
   flex-direction: row;
   top: 0;
+  background-color: transparent;
+  height: 200px;
 }
 
 #h-logo{
@@ -30,11 +32,26 @@ nav{
   width: 100vw;
 }
 .element{
+  background-color: transparent;
+  box-sizing: border-box;
+  white-space: nowrap;
   border-style: solid;
-  border-width: 1px;
+  border-color: #9b1b30;
+  color: #9b1b30;
+  font-size: 16px;
+  font-weight: 500;
+  border-width: 1.5px;
   border-radius: 20px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
+  text-align: center;
+  transition: 0.25s;
+}
+.element:hover{
+  border-color:#f1c404;
+  border-width:  3px;
+  color: #f1c404;
+  font-size: 18px;
 }
