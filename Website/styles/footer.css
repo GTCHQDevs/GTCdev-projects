@@ -1,3 +1,6 @@
+body{
+  box-sizing: border-box;
+}
 footer{
   background-color: #9b1b30;
   color: #e6f7ff;
@@ -27,6 +30,7 @@ footer{
 }
 .f-middle{
   background-color: #9b1b30;
+  display: flex;
   flex: 1;
   width: 625px;
 }

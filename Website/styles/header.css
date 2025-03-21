@@ -11,7 +11,10 @@ body{
   flex-direction: row;
   top: 0;
   background-color: transparent;
-  height: 200px;
+  height: 150px;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 #h-logo{
@@ -25,7 +28,6 @@ nav{
   flex: 1;
   justify-content: space-between;
   align-items: center;
-  margin-top: 90px;
   height: 50px;
   padding-left:50px;
   padding-right: 50px;
