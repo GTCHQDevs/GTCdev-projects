@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>NavBar Test</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #2d2d2d;
+            background-color: #faf9f6;
+        }
+
+        .navbar {
+            background-color: #f8f9fa;
+            padding: 1rem 2rem;
+        }
+
+        .nav-list {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-group {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-group:first-child {
+            justify-content: flex-end;
+        }
+
+        .nav-group:last-child {
+            justify-content: flex-start;
+        }
+
+        .nav-logo {
+            text-align: center;
+        }
+
+        .nav-logo img {
+            height: 80px;
+            width: auto;
+            vertical-align: middle;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #2d2d2d;
+            white-space: nowrap;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: #f1c404;
+        }
+
+        .hamburger {
+            display: none;
+            background: none;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        .hamburger img {
+            height: 24px;
+            width: auto;
+        }
+
+        @media screen and (max-width: 920px) {
+            .nav-list {
+                display: flex;
+                justify-content: space-between;
+                grid-template-columns: unset;
+            }
+
+            .nav-group {
+                display: none;
+            }
+
+            .nav-logo {
+                order: 1;
+                margin-right: auto;
+            }
+
+            .hamburger {
+                display: block;
+                order: 2;
+                margin-left: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-list">
+            <!-- Left Side -->
+            <li class="nav-group">
+                <div class="nav-item"><a href="/">About Us</a></div>
+                <div class="nav-item"><a href="/">Leadership</a></div>
+                <div class="nav-item"><a href="/">Departments</a></div>
+            </li>
+
+            <!-- Logo -->
+            <li class="nav-logo">
+                <a href="/"><img src="../assets-and-images/logo.png"></a>
+            </li>
+
+            <!-- Right Side -->
+            <li class="nav-group">
+                <div class="nav-item"><a href="/">Events</a></div>
+                <div class="nav-item"><a href="/">New Here?</a></div>
+                <div class="nav-item"><a href="/Website/contact-us.html">Contact Us</a></div>
+            </li>
+
+            <!-- Hamburger Menu -->
+            <button class="hamburger" aria-label="Menu">
+                <img src="../assets-and-images/hamburger-menu.svg">
+            </button>
+        </ul>
+    </nav>
+</body>
+    <footer>
+        <div id="footer"></div>
+      </footer>
+      <script 
+      src="../scripts/include.js">
+      </script>
+</html>

@@ -10,6 +10,6 @@ function loadComponent(elementId, filePath) {
 
 // Run this when the page loads
 window.onload = function() {
-  loadComponent("header", "components/header.html"); // Load header
-  loadComponent("footer", "components/footer.html"); // Load footer
+  loadComponent("header", "../components/header.html"); // Load header
+  loadComponent("footer", "../components/footer.html"); // Load footer
 };
