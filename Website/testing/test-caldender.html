@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expandable Event</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding-top: 20px;
+        }
+
+        .event-item {
+            width: 350px;
+            background: white;
+            border: none;
+            padding: 15px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .event-layout {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .event-left, .event-middle, .event-right {
+            flex: 1;
+        }
+
+        .event-right {
+            text-align: right;
+            font-size: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .event-item.expanded .event-right {
+            transform: rotate(180deg);
+        }
+
+        .event-flyer {
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+            border-radius: 10px;
+        }
+
+        /* When expanded, show flyer */
+        .expanded .event-flyer {
+            max-height: 500px; /* Adjust height as needed */
+            margin-top: 10px;
+        }
+
+        .event-flyer img, 
+        .event-flyer video {
+            width: 100%;
+            border-radius: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Expandable Event with Image -->
+    <button class="event-item" onclick="toggleEvent(this)">
+        <div class="event-layout">
+            <div class="event-left">March 19th-23rd</div>
+            <div class="event-middle">47th Annual Church Anniversary</div>
+            <div class="event-right">🔽</div>
+        </div>
+        <!-- Hidden Flyer (Inside the Event Item) -->
+        <div class="event-flyer">
+            <img src="/assets-and-images/flyer.jpeg" alt="Event Flyer">
+        </div>
+    </button>
+
+    <!-- Expandable Event with Video -->
+    <button class="event-item" onclick="toggleEvent(this)">
+        <div class="event-layout">
+            <div class="event-left">April 4th-6th</div>
+            <div class="event-middle">Youth Revival</div>
+            <div class="event-right">🔽</div>
+        </div>
+        <!-- Hidden Video Flyer (Inside the Event Item) -->
+        <div class="event-flyer">
+            <video src="/assets-and-images/youth-revival.mp4" controls></video>
+        </div>
+    </button>
+
+    <script>
+        function toggleEvent(eventElement) {
+            let flyer = eventElement.querySelector('.event-flyer');
+            let video = flyer.querySelector('video');
+
+            // Collapse all other events
+            document.querySelectorAll('.event-item').forEach(item => {
+                if (item !== eventElement) {
+                    item.classList.remove('expanded');
+                    let otherVideo = item.querySelector('.event-flyer video');
+                    if (otherVideo) {
+                        otherVideo.pause();
+                        otherVideo.currentTime = 0;
+                    }
+                }
+            });
+
+            // Toggle clicked event
+            eventElement.classList.toggle("expanded");
+
+            if (video) {
+                if (eventElement.classList.contains("expanded")) {
+                    video.play();
+                } else {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
