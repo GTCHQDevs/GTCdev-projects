@@ -8,31 +8,30 @@
         /* Basic styling */
         body {
             font-family: Arial, sans-serif;
-            background: #f5f5f5;
+            background: #FDF2E9; 
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 15px;
             padding-top: 20px;
         }
-
+    
         .event-item {
             width: 350px;
-            background: white;
-            border: none;
+            background: #FDF2E9; 
+            border: 2px solid #2D2D2D; 
             padding: 15px;
-            text-align: left;
             display: flex;
             flex-direction: column;
             align-items: center;
             cursor: pointer;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(45, 45, 45, 0.15); 
             transition: all 0.3s ease-in-out;
             overflow: hidden;
             position: relative;
         }
-
+    
         .event-layout {
             display: flex;
             width: 100%;
@@ -40,40 +39,73 @@
             justify-content: space-between;
             gap: 15px;
         }
-
-        .event-left, .event-middle, .event-right {
+    
+        .event-left {
             flex: 1;
+            color: #2D2D2D; 
+            font-size: 0.9em;
         }
-
+    
+        .event-middle {
+            flex: 2;
+            color: #9B1B30; 
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+    
         .event-right {
             text-align: right;
-            font-size: 20px;
+            color: #F1C404; 
             transition: transform 0.3s ease-in-out;
         }
-
+    
         .event-item.expanded .event-right {
             transform: rotate(180deg);
         }
-
+    
         .event-flyer {
             width: 100%;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease-in-out;
-            border-radius: 10px;
+            border-radius: 8px;
+            margin-top: 15px;
         }
-
+    
         /* When expanded, show flyer */
         .expanded .event-flyer {
-            max-height: 500px; /* Adjust height as needed */
-            margin-top: 10px;
+            max-height: 1000px; 
         }
-
+    
         .event-flyer img, 
         .event-flyer video {
             width: 100%;
-            border-radius: 10px;
+            border-radius: 8px;
             display: block;
+            border: 2px solid #2D2D2D;
+            box-shadow: 0 2px 4px rgba(45, 45, 45, 0.1);
+        }
+    
+        /* Expand Icon */
+        .event-right::after {
+            content: "▼";
+            font-size: 1.2em;
+            color: #F1C404; 
+            transition: all 0.3s ease;
+        }
+    
+        /* Event Time */
+        .event-time {
+            color: #9B1B30; 
+            font-size: 0.9em;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+    
+        /* Separator */
+        .event-item.expanded .event-layout {
+            border-bottom: 2px solid #F1C404; 
+            padding-bottom: 10px;
         }
     </style>
 </head>
@@ -82,26 +114,39 @@
     <!-- Expandable Event with Image -->
     <button class="event-item" onclick="toggleEvent(this)">
         <div class="event-layout">
-            <div class="event-left">March 19th-23rd</div>
+            <div class="event-left">
+                March 19th-23rd
+                <div class="event-time">
+                    Wed-Fri: 7:00PM<br>
+                    Sat & Sun: 6:00PM
+                </div>
+
+            </div>
             <div class="event-middle">47th Annual Church Anniversary</div>
-            <div class="event-right">🔽</div>
+            <div class="event-right"></div>
         </div>
         <!-- Hidden Flyer (Inside the Event Item) -->
         <div class="event-flyer">
-            <img src="/assets-and-images/flyer.jpeg" alt="Event Flyer">
+            <img src="../assets-and-images/flyer.jpeg" alt="Event Flyer">
         </div>
     </button>
 
     <!-- Expandable Event with Video -->
     <button class="event-item" onclick="toggleEvent(this)">
         <div class="event-layout">
-            <div class="event-left">April 4th-6th</div>
+            <div class="event-left">
+                April 4th-6th
+                <div class="event-time">
+                    Fri-Sat: 7:30 PM<br>
+                    Sun: 11:30 AM & 6:00 PM
+                </div>
+            </div>
             <div class="event-middle">Youth Revival</div>
-            <div class="event-right">🔽</div>
+            <div class="event-right"></div>
         </div>
         <!-- Hidden Video Flyer (Inside the Event Item) -->
         <div class="event-flyer">
-            <video src="/assets-and-images/youth-revival.mp4" controls></video>
+            <video src="../assets-and-images/youth-revival.mp4" controls></video>
         </div>
     </button>
 
