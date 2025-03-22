@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Church Leaders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #FDF2E9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .leaders-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #9B1B30;
+            margin-bottom: 10px;
+        }
+
+        .leaders-container {
+            display: flex;
+            overflow-x: auto;  
+            scroll-snap-type: x mandatory; 
+            gap: 15px;
+            padding: 10px;
+            max-width: 90%;
+            border-radius: 10px;
+            scrollbar-width: none; 
+        }
+
+       
+        .leaders-container::-webkit-scrollbar {
+            display: none;
+        }
+
+    
+        .leader-card {
+            flex: 0 0 auto; 
+            width: 200px; 
+            text-align: center;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            scroll-snap-align: start; /* Makes each card snap into place */
+        }
+
+        
+        .leader-card img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            height: 200px;
+        }
+
+      
+        .leader-name {
+            font-size: 1em;
+            font-weight: bold;
+            color: #2D2D2D;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="leaders-title">Deacons</div>
+
+    <div class="leaders-container">
+        <!-- Leader Cards -->
+        <div class="leader-card">
+            <img src="/assets-and-images/pfp.jpeg" alt="Leader 1">
+            <div class="leader-name">Bannister McKenzie</div>
+          </div>
+        <div class="leader-card">
+          <img src="/assets-and-images/pfp.jpeg" alt="Leader 1">
+          <div class="leader-name">Alphy Beckford</div>
+        </div>
+        <div class="leader-card">
+          <img src="/assets-and-images/pfp.jpeg" alt="Leader 1">
+          <div class="leader-name">Franklin Rose</div>
+        </div>
+        <div class="leader-card">
+      <img src="/assets-and-images/pfp.jpeg" alt="Leader 1">
+      <div class="leader-name">Herbert Riley</div>
+        </div>
+      </div>
+
+
+    <div class="leaders-title">Evangelists</div>
+
+    <div class="leaders-container">
+        <div class="leader-card">
+            <img src="/assets-and-images/pfp.jpeg" alt="Leader 1">
+            <div class="leader-name">Karlene Clarke</div>
+          </div>
+          <div class="leader-card">
+            <img src="/assets-and-images/pfp.jpeg" alt="Leader 1">
+            <div class="leader-name">Karlene Clarke</div>
+          </div>
+          <div class="leader-card">
+            <img src="/assets-and-images/pfp.jpeg" alt="Leader 1">
+            <div class="leader-name">Karlene Clarke</div>
+          </div>
+          <div class="leader-card">
+            <img src="/assets-and-images/pfp.jpeg" alt="Leader 1">
+            <div class="leader-name">Karlene Clarke</div>
+          </div>
+          <div class="leader-card">
+            <img src="/assets-and-images/pfp.jpeg" alt="Leader 1">
+            <div class="leader-name">Karlene Clarke</div>
+          </div>
+          <div class="leader-card">
+            <img src="/assets-and-images/pfp.jpeg" alt="Leader 1">
+            <div class="leader-name">Karlene Clarke</div>
+          </div>
+    </div>
+</body>
+</html>
