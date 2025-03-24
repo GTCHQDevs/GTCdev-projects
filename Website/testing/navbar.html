@@ -7,16 +7,20 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
-        body {
+            body {
             font-family: Arial, sans-serif;
             margin: 0;
             color: #2d2d2d;
-            background-color: #faf9f6;
+            background-color: #FDF2E9; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .navbar {
-            background-color: #f8f9fa;
+            background-color: #FDF2E9; 
             padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .nav-list {
@@ -33,13 +37,15 @@
             display: flex;
             gap: 2rem;
             align-items: center;
+            list-style: none;
+            padding: 0;
         }
 
-        .nav-group:first-child {
+        .left-group {
             justify-content: flex-end;
         }
 
-        .nav-group:last-child {
+        .right-group {
             justify-content: flex-start;
         }
 
@@ -51,6 +57,11 @@
             height: 80px;
             width: auto;
             vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo:hover img {
+            transform: scale(1.05);
         }
 
         .nav-item a {
@@ -61,14 +72,13 @@
         }
 
         .nav-item a:hover {
-            color: #f1c404;
+            color: #9B1B30; 
         }
 
         .hamburger {
             display: none;
             background: none;
-            border: 2px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid #2D2D2D; 
             padding: 8px 12px;
             cursor: pointer;
         }
@@ -76,6 +86,87 @@
         .hamburger img {
             height: 24px;
             width: auto;
+        }
+
+        /* Mobile Menu Styles */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 75%;
+            height: 100vh;
+            background-color: #FDF2E9; 
+            box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #2d2d2d;
+        }
+
+        .mobile-logo {
+            margin: 2rem 0;
+        }
+
+        .mobile-logo img {
+            height: 80px;
+            width: auto;
+        }
+
+        .mobile-nav-group {
+            background-color: #f8f9fa;
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+
+        .mobile-nav-item a {
+            text-decoration: none;
+            color: #2d2d2d;
+            font-size: 1.0rem;
+            display: block;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-item a:hover {
+            color: #9B1B30; 
         }
 
         @media screen and (max-width: 920px) {
@@ -100,41 +191,162 @@
                 margin-left: auto;
             }
         }
+        
+        /* Social Media Icons In Mobile Navbar */
+        .mobile-social-media {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            width: 80%;
+        }
+
+        .mobile-social-media a {
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-social-media a:hover {
+            transform: scale(1.1);
+        }
+
+        .scpic {
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: auto;
+        }
     </style>
 </head>
 <body>
     <nav class="navbar">
-        <ul class="nav-list">
-            <!-- Left Side -->
-            <li class="nav-group">
-                <div class="nav-item"><a href="/">About Us</a></div>
-                <div class="nav-item"><a href="/">Leadership</a></div>
-                <div class="nav-item"><a href="/">Departments</a></div>
-            </li>
+        <div class="nav-list">
+            <!-- Left Navigation Group -->
+            <ul class="nav-group left-group">
+                <li class="nav-item"><a href="">About Us</a></li>
+                <li class="nav-item"><a href="">Leadership</a></li>
+                <li class="nav-item"><a href="">Departments</a></li>
+            </ul>
 
-            <!-- Logo -->
-            <li class="nav-logo">
-                <a href="/"><img src="../assets-and-images/logo.png"></a>
-            </li>
+            <!-- Centered Logo -->
+            <div class="nav-logo">
+                <a href="">
+                    <img src="../assets-and-images/logo.png" alt="Church Logo">
+                </a>
+            </div>
 
-            <!-- Right Side -->
-            <li class="nav-group">
-                <div class="nav-item"><a href="/">Events</a></div>
-                <div class="nav-item"><a href="">New Here?</a></div>
-                <div class="nav-item"><a href="../contact-us.html">Contact Us</a></div>
-            </li>
+            <!-- Right Navigation Group -->
+            <ul class="nav-group right-group">
+                <li class="nav-item"><a href="test-caldender.html">Events</a></li>
+                <li class="nav-item"><a href="">New Here?</a></li>
+                <li class="nav-item"><a href="../contact-us.html">Contact Us</a></li>
+            </ul>
 
             <!-- Hamburger Menu -->
             <button class="hamburger" aria-label="Menu">
-                <img src="../assets-and-images/hamburger-menu.svg">
+                <img src="../assets-and-images/hamburger-menu.svg" alt="Menu Icon">
             </button>
-        </ul>
+        </div>
     </nav>
-</body>
+
+    <!-- Mobile Menu -->
+    <div class="menu-overlay"></div>
+    <div class="mobile-menu">
+        <button class="close-menu" aria-label="Close Menu">×</button>
+        
+        <div class="mobile-logo">
+            <a href="/">
+                <img src="../assets-and-images/logo.png" alt="Church Logo">
+            </a>
+        </div>
+        
+        <div class="mobile-nav-group">
+            <div class="mobile-nav-item"><a href="">About Us</a></div>
+            <div class="mobile-nav-item"><a href="">Leadership</a></div>
+            <div class="mobile-nav-item"><a href="">Departments</a></div>
+            <div class="mobile-nav-item"><a href="test-caldender.html">Events</a></div>
+            <div class="mobile-nav-item"><a href="">New Here?</a></div>
+            <div class="mobile-nav-item"><a href="../contact-us.html">Contact Us</a></div>
+        </div>
+        
+        <!-- Social Media Icons -->
+        <div class="mobile-social-media">
+            <a href="https://www.facebook.com/gospeltabernacle.brooklyn" target="_blank">
+                <img class="scpic" src="../assets-and-images/facebook.png" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/gtchq/" target="_blank">
+                <img class="scpic" src="../assets-and-images/instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.youtube.com/@gtchq623" target="_blank">
+                <img class="scpic" src="../assets-and-images/youtube.png" alt="YouTube">
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
+            const menuOverlay = document.querySelector('.menu-overlay');
+            
+            // Open menu
+            hamburger.addEventListener('click', function() {
+                mobileMenu.classList.add('active');
+                menuOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+            
+            // Close menu functions
+            function closeMenuFunction() {
+                mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            }
+            
+            // Close menu on X button click
+            closeMenu.addEventListener('click', closeMenuFunction);
+            
+            // Close menu when clicking overlay
+            menuOverlay.addEventListener('click', closeMenuFunction);
+            
+            // Close menu when pressing ESC key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeMenuFunction();
+                }
+            });
+            
+            // Close menu when resizing to desktop
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 920) {
+                    closeMenuFunction();
+                }
+            });
+        });
+    </script>
+    
+    <!-- Footer that you added to other files -->
     <footer>
         <div id="footer"></div>
-      </footer>
-      <script 
-      src="../scripts/include.js">
+    
+    </footer>
+    <script>
+        function loadComponent(elementId, filePath) {
+            fetch(filePath) // Get the file
+              .then(response => response.text()) // Convert response to text
+              .then(data => {
+                document.getElementById(elementId).innerHTML = data; // Insert into the page
+              })
+              .catch(error => console.log("Error loading " + filePath, error)); // Handle errors
+          }
+          // Run this when the page loads
+          window.onload = function() {
+            loadComponent("footer", "../components/footer.html"); // Load footer
+          }
       </script>
+</body>
 </html>
