@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expandable Event</title>
+    <style>
+        /* Basic Styling & Grid Layout, no longer using flex*/
+        body {
+            font-family: Arial, sans-serif;
+            background: #FDF2E9;
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-items: center;
+            gap: 15px;
+            padding: 20px 0;
+            margin: 0;
+        }
+
+        .event-item {
+            width: 350px;
+            background: #FDF2E9;
+            border: 1px solid #2D2D2D;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(45, 45, 45, 0.1);
+            transition: all 0.3s ease-in-out;
+            overflow: hidden;
+        }
+
+        .event-layout {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .event-left {
+            color: #2D2D2D;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+
+        .event-middle {
+            color: #9B1B30;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: left;
+        }
+
+        .event-right {
+            color: #F1C404;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .event-item.expanded .event-layout {
+            border-bottom: 1px solid #F1C404; 
+            padding-bottom: 12px;
+            margin-bottom: 8px;
+        }
+
+        .event-flyer {
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out;
+        }
+
+        .expanded .event-flyer {
+            max-height: 1000px;
+        }
+
+        .media-container {
+            margin-top: 10px;
+            border-radius: 4px;
+            overflow: hidden; 
+            border: 0.5px solid rgba(45, 45, 45, 0.2);
+        }
+
+        /* Video Styling */
+        .event-flyer video {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        /* Image Styling */
+        .event-flyer img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain; 
+        }
+
+        /* Time Details */
+        .event-details {
+            margin: 12px 0;
+            color: #9B1B30;
+            font-size: 0.9em;
+        }
+
+        /* Arrow */
+        .event-right::after {
+            content: "❯";
+            display: block;
+            font-size: 1.4em;
+            transform: rotate(90deg);
+            transition: transform 0.3s ease;
+        }
+
+        .event-item.expanded .event-right::after {
+            transform: rotate(270deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Event with Date + Expandable Time -->
+    <button class="event-item" onclick="toggleEvent(this)">
+        <div class="event-layout">
+            <div class="event-left">March 19th-23rd</div>
+            <div class="event-middle">47th Annual Church Anniversary</div>
+            <div class="event-right"></div>
+        </div>
+        <div class="event-flyer">
+            <div class="event-details">
+                <div>Wed-Fri: 7:00PM</div>
+                <div>Sat & Sun: 6:00PM</div>
+            </div>
+            <div class="media-container">
+                <img src="../assets-and-images/flyer.jpeg" alt="Event Flyer">
+            </div>
+        </div>
+    </button>
+
+    <!-- Event with Date + Expandable Time -->
+    <button class="event-item" onclick="toggleEvent(this)">
+        <div class="event-layout">
+            <div class="event-left">April 4th-6th</div>
+            <div class="event-middle">Youth Revival</div>
+            <div class="event-right"></div>
+        </div>
+        <div class="event-flyer">
+            <div class="event-details">
+                <div>Fri-Sat: 7:30 PM</div>
+                <div>Sun: 11:30 AM & 6:00 PM</div>
+            </div>
+            <div class="media-container">
+                <video src="../assets-and-images/youth-revival.mp4"></video>
+            </div>
+        </div>
+    </button>
+
+    <script>
+        function toggleEvent(eventElement) {
+            const flyer = eventElement.querySelector('.event-flyer');
+            const video = flyer.querySelector('video');
+    
+            // Collapse all other events
+            document.querySelectorAll('.event-item').forEach(item => {
+                if (item !== eventElement) {
+                    item.classList.remove('expanded');
+                    const otherVideo = item.querySelector('video');
+                    if (otherVideo) {
+                        otherVideo.pause();
+                        otherVideo.currentTime = 0;
+                    }
+                }
+            });
+    
+            // Toggle the clicked event
+            const isExpanding = !eventElement.classList.contains('expanded');
+            eventElement.classList.toggle('expanded');
+    
+            if (video) {
+                if (isExpanding) {
+                    video.play().catch(() => {
+                        console.log('Autoplay blocked - click to play');
+                    });
+                } else {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

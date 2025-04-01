@@ -1,0 +1,87 @@
+/* Clean this up later, css for this is all over the place and some of it isn't needed */
+body{
+  margin: 0;
+  font-family: arial;
+}
+  header{
+  display: flex;
+  flex-direction: column;
+}
+.banner{
+  display: flex;
+  flex-direction: row;
+  height:128px;
+}
+
+.h-left{
+  display: flex;
+  flex: 1;
+  background-color: lightblue;
+  font-weight: 800;
+  width:384px;
+}
+.hlci{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width:1920px;
+  font-size: 22px;
+  margin: 0;
+  text-align: center;
+}
+.h-middle{
+  flex: 1;
+}
+.h-right{
+  display: flex;
+  align-items: center;
+  background-color: lightblue;
+  width:64px;
+}
+ nav{
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  padding-left:50px;
+  padding-right: 50px;
+
+}
+main{
+  background-color: #fffbf3;
+  height: 600px;
+}
+footer{
+  display: flex;
+  flex-direction: row;
+  height: 272px;
+  width: 100%;
+}
+
+.temporary-logo{
+  display: flex;
+  width: 100%;
+}
+
+.f-left{
+  display: flex;
+  flex-direction: column;
+  background-color: lightblue;
+  text-align: center;
+  align-items: center;
+  justify-content: center; 
+  flex: 1.5;
+}
+.f-middle{
+  background-color: lightpink;
+  flex: 1;
+}
+.f-right{
+  background-color: lightblue;
+  flex: 1;
+}
