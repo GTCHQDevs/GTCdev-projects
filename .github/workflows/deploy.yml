@@ -2,6 +2,18 @@ name: Deploy GitHub Pages
 
 on:
   push:
-      branches: 
-        -main
-jobs: 
+    branches:
+      - main 
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: Website
