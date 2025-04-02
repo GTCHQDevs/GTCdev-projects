@@ -104,6 +104,7 @@
 
         .mobile-menu.active {
             right: 0;
+            z-index: 1000
         }
 
         .menu-overlay {
@@ -119,6 +120,7 @@
 
         .menu-overlay.active {
             display: block;
+            z-index: 999;
         }
 
         .close-menu {
@@ -242,12 +244,12 @@
        </div>
        
        <div class="mobile-nav-group">
-           <div class="mobile-nav-item"><a href="">About Us</a></div>
-           <div class="mobile-nav-item"><a href="">Leadership</a></div>
-           <div class="mobile-nav-item"><a href="">Departments</a></div>
-           <div class="mobile-nav-item"><a href="test-caldender.html">Events</a></div>
-           <div class="mobile-nav-item"><a href="">New Here?</a></div>
-           <div class="mobile-nav-item"><a href="../contact-us.html">Contact Us</a></div>
+           <div class="mobile-nav-item"><a href="/about-us.html">About Us</a></div>
+           <div class="mobile-nav-item"><a href="/leadership.html">Leadership</a></div>
+           <div class="mobile-nav-item"><a href="/departments/index.html">Departments</a></div>
+           <div class="mobile-nav-item"><a href="/calendar.html">Events</a></div>
+           <div class="mobile-nav-item"><a href="/new-here.html">New Here?</a></div>
+           <div class="mobile-nav-item"><a href="/contact-us.html">Contact Us</a></div>
        </div>
        
        <!-- Social Media Icons -->
@@ -263,47 +265,60 @@
            </a>
        </div>
    </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const hamburger = document.querySelector('.hamburger');
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const closeMenu = document.querySelector('.close-menu');
-        const menuOverlay = document.querySelector('.menu-overlay');
-        
-        // Open menu
-        hamburger.addEventListener('click', function() {
-            mobileMenu.classList.add('active');
-            menuOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        });
-        
-        // Close menu functions
-        function closeMenuFunction() {
-            mobileMenu.classList.remove('active');
-            menuOverlay.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      console.log("DOM fully loaded and parsed");
+  
+      const hamburger = document.querySelector(".hamburger");
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const closeMenu = document.querySelector(".close-menu");
+      const menuOverlay = document.querySelector(".menu-overlay");
+  
+      if (!hamburger || !mobileMenu || !closeMenu || !menuOverlay) {
+        console.error("One or more elements not found:", { hamburger, mobileMenu, closeMenu, menuOverlay });
+        return; // Exit if any of the elements are missing
+      }
+  
+      console.log("Menu elements found, adding event listeners");
+  
+      // Function to open the menu
+      function openMenu() {
+        console.log("Opening menu");
+        mobileMenu.classList.add("active");
+        menuOverlay.classList.add("active");
+        document.body.style.overflow = "hidden"; // Disable scrolling
+      }
+  
+      // Function to close the menu
+      function closeMenuFunction() {
+        console.log("Closing menu");
+        mobileMenu.classList.remove("active");
+        menuOverlay.classList.remove("active");
+        document.body.style.overflow = ""; // Restore scrolling
+      }
+  
+      // Attach event listeners
+      hamburger.addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent default behavior if it's a link
+        openMenu();
+      });
+      closeMenu.addEventListener("click", closeMenuFunction);
+      menuOverlay.addEventListener("click", closeMenuFunction);
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeMenuFunction();
         }
-        
-        // Close menu on X button click
-        closeMenu.addEventListener('click', closeMenuFunction);
-        
-        // Close menu when clicking overlay
-        menuOverlay.addEventListener('click', closeMenuFunction);
-        
-        // Close menu when pressing ESC key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeMenuFunction();
-            }
-        });
-        
-        // Close menu when resizing to desktop
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 920) {
-                closeMenuFunction();
-            }
-        });
+      });
+  
+      // Close menu when resizing to desktop
+      window.addEventListener("resize", function () {
+        if (window.innerWidth > 920) {
+          closeMenuFunction();
+        }
+      });
+  
+      console.log("Menu script initialized");
     });
-</script>
+  </script>
 </body>
 </html>
