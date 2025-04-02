@@ -3,23 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Contact Us - Gospel Tabernacle Church</title>
+  <meta name="description" content="Contact information for Gospel Tabernacle Church">
+  <link rel="stylesheet" href="../styles/contact-us.css">
+  <script defer src="../scripts/include.js"></script>
 </head>
 <body>
- 
-    <div id="header"></div>
-
+  <div id="header"></div>
 
   <main>
-
+    <div class="main-content">
+        <div class="page-title">Contact Us</div>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Church Information</h2>
+                <div class="info-item">
+                    <strong>Address:</strong>
+                    <p>2314 Snyder Avenue<br>Brooklyn, NY 11226</p>
+                </div>
+                
+                <div class="info-item">
+                    <strong>Phone:</strong>
+                    <p>(718) 282-3920</p>
+                </div>
+                
+                <div class="info-item">
+                    <strong>Email:</strong>
+                    <p>NO IDEA</p>
+                </div>
+                
+                <div class="info-item">
+                    <strong>Service Times:</strong>
+                    <p>Sunday: 11:00 AM & 2:30 PM</p>
+                </div>
+            </div>
+            
+            <div class="contact-form-container">
+                <h2>Send Us a Message</h2>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="prayer">Prayer Request</option>
+                            <option value="other">Baptism</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+                <div id="formSuccess" class="form-success">
+                    Thank you for your message! We will get back to you soon.
+                </div>
+            </div>
+        </div>
+        
+        <div class="map-container">
+          <h2>Find Us</h2>
+          <div class="google-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48434.36199398382!2d-73.95520216269472!3d40.64867613018595!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b413ff319eb%3A0x1c0d9ec380f63b18!2s2314%20Snyder%20Ave%2C%20Brooklyn%2C%20NY%2011226!5e0!3m2!1sen!2sus!4v1743629346906!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe
+                      width="" 
+                      height="450" 
+                      style="border:0;" 
+                      allowfullscreen="" 
+                      loading="lazy" 
+                      referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+          </div>
+      </div>
   </main>
-  
 
-    <div id="footer"></div>
+  <div id="footer"></div>
 
-  <script src="../scripts/include.js">
-  </script>
-   <script>
+  <script>
     // Wait for the header to be loaded before initializing the menu
     document.addEventListener("headerLoaded", function () {
       console.log("Header loaded, initializing menu functionality");
@@ -80,5 +160,6 @@
       console.log("Menu script initialized");
     });
   </script>
+  <script defer src="../scripts/contact.js"></script>
 </body>
 </html>
