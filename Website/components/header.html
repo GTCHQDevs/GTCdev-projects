@@ -4,23 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../styles/header.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Oleo+Script+Swash+Caps:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
   <style>
     
                 body {
-            font-family: Arial, sans-serif;
             margin: 0;
             color: #2d2d2d;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
-
-        .navbar {
-            background-color: #FDF2E9; 
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
         .nav-list {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
@@ -89,9 +84,10 @@
             position: fixed;
             top: 0;
             right: -100%;
-            width: 75%;
+            width: 70%;
             height: 100vh;
-            background-color: #ffffff; 
+            background-color: #ffffff79; 
+            backdrop-filter: blur(5px);
             box-shadow: -2px 0 5px rgba(0,0,0,0.1);
             z-index: 1000;
             transition: right 0.3s ease;
@@ -139,25 +135,31 @@
         }
 
         .mobile-logo img {
-            height: 80px;
+            height: 100px;
             width: auto;
         }
 
         .mobile-nav-group {
-            background-color: #f8f9fa;
-            width: 80%;
+            background-color: #e3e3e3; 
+            backdrop-filter: blur(18px);
+            width: 60%;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 1rem;
             margin-bottom: 1rem;
-            border-radius: 8px;
+            border-radius: 12px;
+            gap: 10px;
+            
         }
 
         .mobile-nav-item a {
+            gap: 2px;
+            font-family: poppins;
+            font-weight: 500;
             text-decoration: none;
             color: #2d2d2d;
-            font-size: 1.0rem;
+            font-size: 1.2rem;
             display: block;
             padding: 0.5rem 0;
             transition: color 0.3s ease;
@@ -320,5 +322,20 @@
       console.log("Menu script initialized");
     });
   </script>
+
+  <script>let slideIndex = 0;
+    showSlides();
+    
+    function showSlides() {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}
+      slides[slideIndex-1].style.display = "block";
+      setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }</script>
 </body>
 </html>

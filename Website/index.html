@@ -10,14 +10,41 @@
 
   <body> 
       <div id="header"></div>
+      <div class="top">
+        <div class="welcome-msg">
+          <h1 style="font-family: Mr Dafoe;
+          display: flex;
+          text-align: center;
+          font-weight: 400;
+          font-size: 80px;
+          color: #f1c404;
+          letter-spacing: 12px;">Welcome</h1>
+          <h5 style="font-family: poppins;
+          color: #ffffff;
+          letter-spacing: 4px;
+          font-size: 24px;">To the new and improved GTC Snyder Webpage</h5>
+        </div>
+          <!-- Slideshow container -->
+        <div class="slideshow-container">
 
-
+          <div class="mySlides fade">
+            <img class="slideimg"  src="/assets-and-images/ss-choir.jpg" style="width:100%">
+          </div>
+          <div class="mySlides fade">
+            <img class="slideimg"  src="/assets-and-images/street-sign.jpg" style="width:100%">
+          </div>
+          <div class="mySlides fade">
+            <img class="slideimg"  src="/assets-and-images/sanctuary.jpg" style="width:100%">
+          </div>
+      </div>
     <main>
-
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
     </main>
 
       <div id="footer"></div>
-
     <script src="../scripts/include.js">
     </script>
     <script>
@@ -81,5 +108,21 @@
         console.log("Menu script initialized");
       });
     </script>
+    
+    <script>
+      let slideIndex = 0;
+      showSlides();
+      
+      function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        slides[slideIndex-1].style.display = "block";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+      }</script>
   </body>
 </html>

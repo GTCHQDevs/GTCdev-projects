@@ -1,7 +1,45 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body{
   margin: 0;
-  font-family: arial;
-  overflow: hidden;
+  font-family: poppins;
+  overflow-x: hidden;
   background-color: ffffff;
   min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.top{
+  z-index: 1;
+  position:absolute;
+  width: 100%;
+  height: 700px;
+  object-fit:contain;
+}
+main{
+  width: 100%;
+}
+
+
+.slideimg{
+  display: block;
+  filter: brightness(.8);
+}
+
+.welcome-msg{
+  z-index: 2;
+  position:absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  top: 220px;
+  width: 100%;
+  height: 40px;
+  padding-left: 50px;
+  padding-right: 50px;
+  gap: 10px;
 }
