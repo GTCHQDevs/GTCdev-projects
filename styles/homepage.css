@@ -4,6 +4,18 @@
      align-items: center;
      justify-content: center;
    }
+
+   .p-welcome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+   }  
  }
 
  .welcome-msg{
@@ -18,5 +30,14 @@
   height: 40px;
   padding-left: 50px;
   padding-right: 50px;
-  gap: 10px;
+  gap: 12px;
+}
+
+.top h1 {
+  font-size: clamp(2rem, 8vw, 4rem);
+}
+
+.top h5 {
+  font-size: clamp(0.1rem, 5vw, 2rem);
+  margin-bottom: 50px;
 }
