@@ -1,0 +1,17 @@
+.mySlides {
+  display: none;
+  animation: fade .75s ease-in-out;
+}
+@keyframes fade {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slideimg{
+  display: block;
+  filter: brightness(.8);
+}
