@@ -252,7 +252,21 @@ body {
       order: 2;
       margin-left: auto;
   }
+
+  #h-logo {
+      width: 95px;
+      height: 95px;
+  }
+
+  nav{
+      padding-left: 20px;
+      padding-right: 20px;
+  }
 }
+
+
+
+
 
 /* Social Media Icons In Mobile Navbar */
 .mobile-social-media {
@@ -276,3 +290,4 @@ body {
   height: 32px;
   border-radius: 4px;
 }
+

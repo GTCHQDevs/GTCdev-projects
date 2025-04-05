@@ -1,22 +1,20 @@
-@media (max-width: 700px) {
-  .welcome-sec {
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-   }
+ .welcome-msg h1{
+  font-family: Mr Dafoe;
+  display: flex;
+  text-align: center;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 10vw, 5.2rem);
+  color: #f1c404;
+  }
 
-   .p-welcome{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 600px;
-    margin: 30px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-   }  
- }
+.welcome-msg h5{
+  font-family: poppins;
+  z-index: 1000;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 4px;
+  font-size: clamp(1.2rem, 2vw, 3.6rem);
+}
 
  .welcome-msg{
   z-index: 1000;
@@ -30,14 +28,68 @@
   height: 40px;
   padding-left: 50px;
   padding-right: 50px;
-  gap: 12px;
+  gap: 10px;
 }
 
-.top h1 {
-  font-size: clamp(2rem, 8vw, 4rem);
+@media (max-width: 700px) {
+  .welcome-sec {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+    height: 100;
+  }
+ 
+   .welcome-msg {
+     padding-left: 15px;
+     padding-right: 10px;
+     padding-bottom: 10px;
+     top: 190px;
+   }
+
+   .p-welcome{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 600px;
+    border: 1px solid #ccc;
+    gap: 5px;
+    padding-top: 10px;
+   }  
+ }
+
+ .welcome-sec{
+  padding-top: 50px;
+  padding-bottom:50px;
+  padding-left: min(4.5em, 6%);
+  padding-right: min(4.5em, 6%);
+  height: 600px;
+  position: relative;
+  display: flex;
+  flex: row;
+  justify-content: space-around;
+  align-items: center;
+ }
+
+.p-welcome{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: min(100%, 400px);
+  margin: 30px auto;
+  border: 1px solid #ccc;
 }
 
-.top h5 {
-  font-size: clamp(0.1rem, 5vw, 2rem);
-  margin-bottom: 50px;
-}
+@media (max-width: 700px) {
+  .welcome-sec {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px; 
+    padding-bottom: 20px; 
+  }}
