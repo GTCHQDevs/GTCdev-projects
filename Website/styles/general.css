@@ -23,3 +23,16 @@ main{
   width: 100%;
 }
 
+.temp-banner{
+  position:absolute;
+  top: 0;
+  height: 150px;
+  width: 100%;
+  background-color:#981b30bb;
+}
+
+@media (max-width: 900px) {
+  .temp-banner{
+    background-color: transparent;
+  }}
+

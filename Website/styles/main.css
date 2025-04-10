@@ -56,32 +56,3 @@ main{
   background-color: #fffbf3;
   height: 600px;
 }
-footer{
-  display: flex;
-  flex-direction: row;
-  height: 272px;
-  width: 100%;
-}
-
-.temporary-logo{
-  display: flex;
-  width: 100%;
-}
-
-.f-left{
-  display: flex;
-  flex-direction: column;
-  background-color: lightblue;
-  text-align: center;
-  align-items: center;
-  justify-content: center; 
-  flex: 1.5;
-}
-.f-middle{
-  background-color: lightpink;
-  flex: 1;
-}
-.f-right{
-  background-color: lightblue;
-  flex: 1;
-}
