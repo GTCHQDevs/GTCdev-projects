@@ -30,6 +30,22 @@
   padding-right: 50px;
   gap: 10px;
 }
+.live{
+  z-index: 1000;
+  position:absolute;
+  display: flex;
+  color: #ffffff;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  top: 120px;
+  gap: 10px;
+  border-radius:10px;
+  height: 125px;
+  width: 300px;
+  background-color: rgba(240, 248, 255, 0.033);
+}
 
 @media (max-width: 700px) {
   .welcome-sec {
@@ -45,7 +61,7 @@
      padding-left: 15px;
      padding-right: 10px;
      padding-bottom: 10px;
-     top: 190px;
+     top: 150px;
    }
 
    .p-welcome{
@@ -92,4 +108,16 @@
     justify-content: center;
     padding-top: 20px; 
     padding-bottom: 20px; 
-  }}
+  }
+  .live{
+    top: 90px;
+    width: 90%;
+    height: 100px;
+    background-color: #e9e9e97a;
+    color: #f1c404;
+    gap: none;
+  }
+  .spic{
+    filter: invert(13%) sepia(88%) saturate(7491%) hue-rotate(0deg) brightness(97%) contrast(107%);
+  }
+}

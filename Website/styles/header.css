@@ -26,8 +26,8 @@ body{
 }
 
 #h-logo{
-  width:132px;
-  height:132px;
+  width:124px;
+  height:124px;
 }
 
 nav{
@@ -41,7 +41,7 @@ nav{
   height: 50px;
   padding-left:50px;
   padding-right: 50px;
-  width: 100vw;
+  width: 10vw;
 }
 .element{
   background-color: #ffffff37;
@@ -50,13 +50,13 @@ nav{
   white-space: nowrap;
   border-style: solid;
   color: #ffffff;
-  font-size: clamp(1rem, 1vw, 2.1rem);
+  font-size: clamp(.825rem, 1vw, 2rem);
   font-weight: 300;
-  letter-spacing: 2.5px;
+  letter-spacing: 2.2px;
   border-width: .8px;
   border-radius: 24px;
-  padding-left: 18px;
-  padding-right: 18px;
+  padding-left: 15px;
+  padding-right: 15px;
   padding-top: 6px;
   padding-bottom: 6px;
   text-align: center;
