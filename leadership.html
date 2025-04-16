@@ -5,14 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leadership</title>
   <link rel="stylesheet" href="/styles/general.css">
+  <link rel="stylesheet" href="/styles/backToTop.css">
   <link rel="icon" type="image/x-icon" href="/assets-and-images/favicon.ico">
 </head>
 <body>
   <div id="header"></div>
   <div class="temp-banner"></div>
   <main></main>
+  <button onclick="topFunction()" id="backToTop" title="Go to top">
+    <img class="btn-img"  src="/assets-and-images/backToTop.svg" alt="Back to Top">
+  </button>
   <div id="footer"></div>
   <script src="../scripts/include.js"></script>
   <script src="/scripts/menu.js"></script>
+  <script>
+          let mybutton = document.getElementById("backToTop");
+
+// When user scrolls 20px from top, button shows
+window.onscroll = function() {scrollFunction()};
+
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+window.topFunction = function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+// Button on click, returns to top
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+  </script>
 </body>
 </html>

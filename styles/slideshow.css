@@ -1,17 +1,20 @@
 .mySlides {
   display: none;
-  animation: fade .75s ease-in-out;
-}
-@keyframes fade {
-  from {
-    opacity: 0.8;
-  }
-  to {
-    opacity: 1;
-  }
+  animation: fade 0.75s ease-in-out;
+  width: 100%;
+  height: 700px;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.8);
 }
 
-.slideimg{
-  display: block;
-  filter: brightness(.8);
+@keyframes fade {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .mySlides {
+    height: 550px;
+  }
 }

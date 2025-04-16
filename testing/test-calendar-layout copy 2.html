@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events Calendar</title>
+  <link rel="stylesheet" href="/styles/general.css">
+  <link rel="stylesheet" href="/styles/calendar2.css">
+  <link rel="icon" type="image/x-icon" href="/assets-and-images/favicon.ico">
+</head>
+
+<body>
+  <div id="header"></div>
+  <div class="temp-banner"></div>
+
+  <main>
+     <div id="calendar"></div>
+  </main>
+  
+  <div id="footer"></div>
+  <script src="../scripts/include.js"></script>
+  <script src="../scripts/menu.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script>
+        document.addEventListener('DOMContentLoaded', function () {
+      const calendarEl = document.getElementById('calendar');
+
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: '/Data/events.json', 
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'dayGridMonth,timeGridWeek,listWeek'
+        }
+      });
+
+      calendar.render();
+    });
+  </script>
+   <script>
+    function loadComponent(elementId, filePath) {
+        fetch(filePath) // Get the file
+          .then(response => response.text()) // Convert response to text
+          .then(data => {
+            document.getElementById(elementId).innerHTML = data; // Insert into the page
+          })
+          .catch(error => console.log("Error loading " + filePath, error)); // Handle errors
+      }
+      // Run this when the page loads
+      window.onload = function() {
+        loadComponent("header", "../components/header.html"); // Load header
+        loadComponent("footer", "../components/footer.html"); // Load footer
+      }
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+#backToTop {
+  padding: 8px;
+  border-radius: 36px;
+  border-style: none;
+  border-width: 1px;
+  border-color: #4a4a4a3e;
+  background-color: #cfcfcf37;
+  backdrop-filter: blur(10px);
+  display: none;
+  position: fixed;
+  height: 48px;
+  width: 48px;
+  bottom: 20px;
+  right: 30px; 
+  z-index: 99;
+}
+.btn-img {
+  width: 100%;
+  height: 100%;
+}
+#backToTop:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+}
+.btn-img:hover {
+  filter: brightness(0) invert(0);
+  transform: scale(1.1);
+  transition: transform 0.5s ease-in-out;
+}

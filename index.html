@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/styles/general.css">
     <link rel="stylesheet" href="/styles/homepage.css">
     <link rel="stylesheet" href="/styles/slideshow.css">
+    <link rel="stylesheet" href="/styles/backToTop.css">
   </head>
 
   <body> 
@@ -17,18 +18,19 @@
         <div class="welcome-msg">
           <h1>Welcome</h1>
           <h5>To the new and improved GTC Snyder Webpage</h5>
+          <div class="live">
+            <p>WATCH US LIVE SUNDAYS: 11:30AM</p>
+            <div class="live-button">
+              <a href="https://www.youtube.com/@GospelTabernacleChurchSnyder" target="_blank"><img class="scpic"  src="/assets-and-images/youtube.png"></a>
+            </div>
+          </div>
         </div>
-          <!-- Slideshow container -->
         <div class="slideshow-container">
-          <div class="mySlides fade">
-            <img class="slideimg"  src="/assets-and-images/ss-choir.jpg" style="width:100%">
-          </div>
-          <div class="mySlides fade">
-            <img class="slideimg"  src="/assets-and-images/sanctuary.jpg" style="width:100%">
-          </div>
-          <div class="mySlides fade">
-            <img class="slideimg"  src="/assets-and-images/youth-choir.jpeg" style="width:100%">
-          </div>
+            <div class="mySlides" style="background-image: url('/assets-and-images/churchFront.jpeg');"></div>
+            <div class="mySlides" style="background-image: url('/assets-and-images/streetSign.jpg');"></div>
+            <div class="mySlides" style="background-image: url('/assets-and-images/ss-choir.jpg');"></div>
+            <div class="mySlides" style="background-image: url('/assets-and-images/sanctuary.jpg');"></div>
+            <div class="mySlides" style="background-image: url('/assets-and-images/youth-choir.jpeg');"></div>
       </div>
     <main>
       <section class="welcome-sec">
@@ -55,11 +57,36 @@
       <section></section>
       <section></section>
     </main>
-
+    <button onclick="topFunction()" id="backToTop" title="Go to top">
+      <img class="btn-img"  src="/assets-and-images/backToTop.svg" alt="Back to Top">
+    </button>
       <div id="footer"></div>
     <script src="../scripts/include.js"></script>
     <script src="/scripts/menu.js"></script>
     <script src="/scripts/slides.js"></script>
-    
+    <script>
+        let mybutton = document.getElementById("backToTop");
+
+        // When user scrolls 20px from top, button shows
+        window.onscroll = function() {scrollFunction()};
+
+
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+          } else {
+            mybutton.style.display = "none";
+          }
+        }
+        window.topFunction = function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
+        // Button on click, returns to top
+        function topFunction() {
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
   </body>
 </html>

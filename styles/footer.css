@@ -37,24 +37,24 @@ footer {
 .church-name {
   font-weight: bold;
   margin-bottom: 8px;
-  font-size: 16px;
+  font-size: 1.2rem;
 }
 
 .copyright {
-  font-size: 10px;
+  font-size: 1rem;
   margin-bottom: 15px;
 }
 
 .socials {
   display: flex;
   justify-content: space-between;
-  width: 125px;
-  margin-top: 10px;
+  width: 90px;
+  height: 18px;
 }
 
 .scpic {
-  width: 37.5px;
-  height: 37.5px;
+  width: 18px;
+  height: 18px;
   filter: invert(91%) sepia(6%) hue-rotate(162deg) saturate(456%) brightness(110%);
   transition: filter 0.3s ease;
 }
@@ -71,11 +71,30 @@ footer {
   padding-top: 20px;
   min-width: 300px;
 }
+.f-middle {
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: start;
+  gap: 10px;
+}
+.f-middle2 {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: start;
+  flex: 1;
+  padding: 0 15px;
+  min-width: 280px;
+  padding-top: 20px;
+}
 
 
 .f-right {
   flex-direction: column;
 }
+
 
 .contact-info, .quick-links, .map-preview {
   width: 100%;
@@ -239,13 +258,21 @@ footer {
   }
   
   .links-list {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 600px) {  
   .links-list {
-    grid-template-columns: 1fr; 
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+  }
+  .f-right h3 {
+    text-align: center
+  }
+  .f-middle2 {
+    display: none;
   }
 }
 

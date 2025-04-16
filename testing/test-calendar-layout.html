@@ -5,150 +5,119 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Events Calendar</title>
   <link rel="stylesheet" href="/styles/general.css">
+  <link rel="stylesheet" href="/styles/calendar.css">
   <link rel="icon" type="image/x-icon" href="/assets-and-images/favicon.ico">
-  <style>
-      /* Sidebar Calendar */
-      .calendar-sidebar {
-      width: 260px;
-      height: 100vh;
-      overflow-y: auto;
-      border-right: 1px solid #ddd;
-      padding: 1rem;
-      background: white;
-    }
 
-    .month {
-      margin-bottom: 2rem;
-      text-align: center;
-    }
-
-    .month h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1rem;
-    }
-
-    .days {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      font-size: 0.8rem;
-      gap: 0.2rem;
-    }
-
-    .day {
-      text-align: center;
-      padding: 0.5em;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    .day.event-day {
-      background-color: #9d9d27;
-      color: white;
-    }
-
-    .day.today {
-      border: 1px solid var(--primary);
-    }
-    .calendar-content {
-      flex: 1;
-      padding: 1rem;
-    }
-    .page-layout {
-      display: grid;
-      grid-template-columns: 260px 1fr;
-    }
-
-    .month-view{
-      text-align: center;
-    }
-  /* Mobile */
- /* Mobile overrides */
-@media (max-width: 768px) {
-  .page-layout {
-    display: block;
-  }
-
-  .desktop-only {
-    display: none;
-  }
-
-  .mobile-only {
-    display: none;
-    width: 100%;
-    background: white;
-    border-top: 1px solid #ddd;
-    padding: 1rem;
-  }
-
-  .mobile-only.show {
-    display: block;
-  }
-
-  .calendar-toggle {
-    position: sticky;
-    bottom: 0;
-    padding: 1rem;
-    background-color: aqua;
-    color: white;
-    text-align: center;
-    cursor: pointer;
-    z-index: 11;
-  }
-}
-
-/* Desktop */
-@media (min-width: 769px) {
-  .mobile-only {
-    display: none;
-  }
-}
-  </style>
 </head>
 
 <body>
   <div id="header"></div>
   <div class="temp-banner"></div>
+  <div class="top-bar event">
+    <h1>Events</h1>
+    <p>Welcome to our events calendar! Here you can find all the upcoming events and activities happening in our Church.</p>
+    <p>Stay tuned for more updates!</p>
+  </div>
   <main class="page-layout">
     <aside class="calendar-sidebar desktop-only" id="calendarDesktop"></aside>
     <section class="calendar-content">
-      <h1>Events Calendar</h1>
-      <p>Welcome to our events calendar! Here you can find all the upcoming events and activities happening in our Church.</p>
-      <p>Stay tuned for more updates!</p>
      <section class="month-view">
-      <section id="January">
+      <section id="January" class="month-view">
         <h2>January 2025</h2>
       </section>
-      <section id="Feburary">
+      <section id="Feburary" class="month-view">
         <h2>February 2025</h2>
       </section>
-      <section id="March">
+      <section id="March" class="month-view">
         <h2>March 2025</h2>
       </section>
-      <section id="April">
+      <section id="April" class="month-view">
         <h2>April 2025</h2>
+          <button class="event-item" onclick="toggleEvent(this)"> 
+            <div class="event-layout">
+                <div class="event-left">April 4th-6th</div>
+                <div class="event-middle">Youth Revival</div>
+                <div class="event-right"></div>
+            </div>
+            <div class="event-flyer">
+                <div class="event-details">
+                    <div>Fri-Sat: 7:30 PM</div>
+                    <div>Sun: 11:30 AM & 6:00 PM</div>
+                </div>
+                <div class="media-container">
+                    <video src="../assets-and-images/youth-revival.mp4"></video>
+                </div>
+            </div>
+        </button> <!-- Youth Revival-->
+        <button class="event-item" onclick="toggleEvent(this)">
+          <div class="event-layout">
+              <div class="event-left">April 20th</div>
+              <div class="event-middle">Friends and Family Day</div>
+              <div class="event-right"></div>
+          </div>
+          <div class="event-flyer">
+              <div class="event-details">
+                  <div>Sun: 11:30 AM</div>
+              </div>
+              <div class="media-container">
+                  <img src="../assets-and-images/fnf.jpg"></img>
+              </div>
+          </div>
+      </button> <!-- Friends and Family Day-->
       </section>
-      <section id="May">
+      <section id="May" class="month-view">
         <h2>May 2025</h2>
+        <button class="event-item" onclick="toggleEvent(this)">
+          <div class="event-layout">
+              <div class="event-left">May 9th-11th</div>
+              <div class="event-middle">Tri State Y.Y.A.S Gala and Conference</div>
+              <div class="event-right"></div>
+          </div>
+          <div class="event-flyer">
+              <div class="event-details">
+                  <div>Fri: Gala 8:00 PM</div>
+                  <div>Sat: Forums 11:00 AM</div>
+                  <div>Sat: Lunch 3:00 PM</div>
+                  <div>Sat: Worship 5:00 PM</div>
+              </div>
+              <div class="media-container">
+                  <img src=""></img>
+        <button class="event-item" onclick="toggleEvent(this)">
+          <div class="event-layout">
+              <div class="event-left">May 23rd-25th</div>
+              <div class="event-middle">Men's and Women's Conference</div>
+              <div class="event-right"></div>
+          </div>
+          <div class="event-flyer">
+              <div class="event-details">
+                  <div></div>
+                  <div></div>
+              </div>
+              <div class="media-container">
+                  
+              </div>
+          </div>
+      </button> <!--Mens and Women Conference-->
       </section>
-      <section id="June">
+      <section id="June" class="month-view">
         <h2>June 2025</h2>
       </section>
-      <section id="July">
+      <section id="July" class="month-view">
         <h2>July 2025</h2>
       </section>
-      <section id="August">
+      <section id="August" class="month-view">
         <h2>August 2025</h2>
       </section>
-      <section id="September">
+      <section id="September" class="month-view"> 
         <h2>September 2025</h2>
       </section>
-      <section id="October">
+      <section id="October" class="month-view">
         <h2>October 2025</h2>
       </section>  
-      <section id="November">
+      <section id="November" class="month-view">
         <h2>November 2025</h2>
       </section>
-      <section id="December">
+      <section id="December" class="month-view">
         <h2>December 2025</h2>
       </section>
      </section>
@@ -157,6 +126,7 @@
   <div class="calendar-toggle mobile-" onclick="toggleCalendar()">Show Calendar</div>
   <div class="calendar-sidebar mobile-only" id="calendarMobile"></div>
   <div id="footer"></div>
+  <script src="../scripts/events.js"></script>
   <script src="../scripts/include.js"></script>
   <script src="../scripts/menu.js"></script>
   <script>
@@ -252,6 +222,39 @@
       window.onload = function() {
         loadComponent("header", "../components/header.html"); // Load header
         loadComponent("footer", "../components/footer.html"); // Load footer
+      }
+  </script>
+     <script>
+      function toggleEvent(eventElement) {
+          const flyer = eventElement.querySelector('.event-flyer');
+          const video = flyer.querySelector('video');
+  
+          // Collapse all other events
+          document.querySelectorAll('.event-item').forEach(item => {
+              if (item !== eventElement) {
+                  item.classList.remove('expanded');
+                  const otherVideo = item.querySelector('video');
+                  if (otherVideo) {
+                      otherVideo.pause();
+                      otherVideo.currentTime = 0;
+                  }
+              }
+          });
+  
+          // Toggle the clicked event
+          const isExpanding = !eventElement.classList.contains('expanded');
+          eventElement.classList.toggle('expanded');
+  
+          if (video) {
+              if (isExpanding) {
+                  video.play().catch(() => {
+                      console.log('Autoplay blocked - click to play');
+                  });
+              } else {
+                  video.pause();
+                  video.currentTime = 0;
+              }
+          }
       }
   </script>
 </body>
