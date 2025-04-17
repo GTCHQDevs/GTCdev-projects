@@ -5,18 +5,18 @@
       align-items: center;
       background-color: #f0f0f0;
       padding-top: 40px;
-      padding: 0 80px;
+      padding: 0 6.2em;
     }
     #calendar {
-      width: 95%;
+      width: 100%;
       height: auto;
       margin: 40px auto;
-      padding: 20px;
+      padding: 2em;
       border-radius: 16px;
       background-color: transparent;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       font-family: 'Segoe UI', sans-serif;
-      overflow-x:hidden ;
+      overflow-x:hidden;
     }
 
     /* Toolbar Title */
