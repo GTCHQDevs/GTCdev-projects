@@ -1,19 +1,26 @@
 [
   {
-    "title": "Sunday Worship",
-    "start": "2025-04-21T10:00:00",
-    "description": "Join us for a morning of praise!"
-  },
-  {
-    "title": "Bible Study",
-    "start": "2025-04-25T19:00:00",
-    "description": "Mid-week reflection and community learning"
-  },
-  {
     "title": "Youth Revival 2025",
     "start": "2025-04-04T19:30:00",
     "end": "2025-04-06T21:00:00",
     "groupId": "Youth Revival",
     "description": "Join us for our annual Youth Revival"
+  },
+  {
+    "title": "Friends and Family Day",
+    "start": "2025-04-20T11:30:00",
+    "description": "Join us for a morning of praise!"
+  },
+  {
+    "title": "Tri-State Youth Summit",
+    "start": "2025-05-02T20:30:00",
+    "end": "2025-05-03T13:00:00",
+    "description": ""
+  },
+  {
+    "title": "Men's and Women's Conference",
+    "start": "2025-05-23T20:00:00",
+    "end": "2025-05-25T23:00:00",
+    "description": ""
   }
 ]
