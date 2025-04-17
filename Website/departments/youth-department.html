@@ -3,22 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" src="/styles/general.css">
+  <link rel="stylesheet" href="/styles/backToTop.css">
   <title>Youth Department</title>
 </head>
 <body>
-  <header>
     <div id="header"></div>
-  </header>
+    <div class="temp-banner"></div>
 
   <main>
 
   </main>
-  
-  <footer>
+  <button onclick="topFunction()" id="backToTop" title="Go to top">
+    <img class="btn-img"  src="/assets-and-images/backToTop.svg" alt="Back to Top">
+  </button>
     <div id="footer"></div>
-  </footer>
-  <script src="../scripts/include.js">
+  <script>
+    function loadComponent(elementId, filePath) {
+        fetch(filePath) // Get the file
+          .then(response => response.text()) // Convert response to text
+          .then(data => {
+            document.getElementById(elementId).innerHTML = data; // Insert into the page
+          })
+          .catch(error => console.log("Error loading " + filePath, error)); // Handle errors
+      }
+      // Run this when the page loads
+      window.onload = function() {
+        loadComponent("header", "../components/header.html"); // Load header
+        loadComponent("footer", "../components/footer.html"); // Load footer
+      }
   </script>
-  
+    <script>
+      let mybutton = document.getElementById("backToTop");
+
+      // When user scrolls 20px from top, button shows
+      window.onscroll = function() {scrollFunction()};
+
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          mybutton.style.display = "block";
+        } else {
+          mybutton.style.display = "none";
+        }
+      }
+      window.topFunction = function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      };
+
+      // Button on click, returns to top
+      function topFunction() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      }
+  </script>
 </body>
 </html>
