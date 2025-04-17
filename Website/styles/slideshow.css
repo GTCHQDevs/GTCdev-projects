@@ -1,6 +1,6 @@
 .mySlides {
   display: none;
-  animation: fade 0.75s ease-in-out;
+  animation: fade 0.85s ease-in-out;
   width: 100%;
   height: 700px;
   background-size: cover;
@@ -12,9 +12,20 @@
   from { opacity: 0.8; }
   to { opacity: 1; }
 }
+@keyframes panBackground {
+  0% {
+    background-position: left center;
+  }
+  100% {
+    background-position: right center;
+  }
+}
+
 
 @media (max-width: 768px) {
   .mySlides {
     height: 550px;
+    background-position: center;
+    animation: panBackground 20s linear infinite alternate, fade 0.75s ease-in-out;
   }
-}
+  }
