@@ -1,15 +1,47 @@
 [
   {
+    "title": "11:00a Sunday Service",
+    "daysOfWeek": [0],
+    "startTime": "11:30",
+    "endTime": "2025-05-25T23:00:00",
+    "startRecur": "2025-01-01",
+    "description": "Join us for a morning of praise!",
+    "textColor": "#ffffff",
+    "color": "#785189",
+    "allDay": true
+    
+  },
+  {
+    "title": "7:30p Prayer Meeting",
+    "daysOfWeek": [2],
+    "startRecur": "2025-01-01",
+    "description": "Join us for a night of prayer!",
+    "textColor": "#000000",
+    "color": "#add8e6",
+     "allDay": true
+  },
+  {
+    "title": "8:00p Bible Study",
+    "daysOfWeek": [3],
+    "startTime": "20:00",
+    "startRecur": "2025-01-01",
+    "description": "Join us for Bible Study!",
+    "textColor": "#000000",
+    "color": "#b1ddb1",
+    "allDay": true
+  },
+  {
     "title": "Youth Revival 2025",
     "start": "2025-04-04T19:30:00",
     "end": "2025-04-06T21:00:00",
-    "groupId": "Youth Revival",
     "description": "Join us for our annual Youth Revival"
   },
   {
     "title": "Friends and Family Day",
     "start": "2025-04-20T11:30:00",
-    "description": "Join us for a morning of praise!"
+    "end": "2025-04-20T21:00:00",
+    "description": "Join us for a morning of praise!",
+    "allDay": true
   },
   {
     "title": "Tri-State Youth Summit",
