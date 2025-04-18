@@ -3,7 +3,7 @@
   width: 350px;
   background: #fdfdfd;
   border: none;
-  padding: 15px;
+  padding: min(15px, 3vw);
   cursor: pointer;
   border-radius: 30px;
   box-shadow: 0 8px 8px rgba(45, 45, 45, 0.1);
@@ -20,7 +20,7 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 15px;
+  gap: min(10px, 2vw);
 }
 
 .event-left {
