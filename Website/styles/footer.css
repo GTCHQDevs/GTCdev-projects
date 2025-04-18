@@ -53,10 +53,8 @@ footer {
 }
 
 .scpic {
-  width: 18px;
-  height: 18px;
-  filter: invert(91%) sepia(6%) hue-rotate(162deg) saturate(456%) brightness(110%);
-  transition: filter 0.3s ease;
+  width: 24px;
+  height: 24px;
 }
 
 .scpic:hover {

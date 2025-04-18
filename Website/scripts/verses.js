@@ -5,9 +5,9 @@ function getDailyRandomIndex(seed, length) {
 }
 
 const today = new Date();
-const daySeed = today.getFullYear() * 1000 + today.getMonth() * 100 + today.getDate(); // Stable daily seed
+const daySeed = today.getFullYear() * 1000 + today.getMonth() * 100 + today.getDate(); 
 
-fetch("verses.json") // or "data/verses.json" if it's in a subfolder
+fetch("verses.json")
   .then(res => res.json())
   .then(verses => {
     const index = getDailyRandomIndex(daySeed, verses.length);

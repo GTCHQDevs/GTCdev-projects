@@ -209,3 +209,14 @@
 .mobile-only {
   display: none;
 }}
+
+
+
+.event-container{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+}
