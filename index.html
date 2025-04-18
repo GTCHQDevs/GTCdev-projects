@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/styles/homepage.css">
     <link rel="stylesheet" href="/styles/slideshow.css">
     <link rel="stylesheet" href="/styles/backToTop.css">
+    <link rel="stylesheet" href="/styles/calendar.css">
   </head>
 
   <body> 
@@ -21,13 +22,13 @@
           <div class="live">
             <p>WATCH US LIVE SUNDAYS: 11:30AM</p>
             <div class="live-button">
-              <a href="https://www.youtube.com/@GospelTabernacleChurchSnyder" target="_blank"><img class="scpic"  src="/assets-and-images/youtube.png"></a>
+              <a href="https://www.youtube.com/@GospelTabernacleChurchSnyder" target="_blank"><img class="scpic"  src="/assets-and-images/icons/youtube.svg"></a>
             </div>
           </div>
         </div>
         <div class="slideshow-container">
-            <div class="mySlides" style="background-image: url('/assets-and-images/churchFront.jpeg');"></div>
-            <div class="mySlides" style="background-image: url('/assets-and-images/streetSign.JPG');"></div>
+            <div class="mySlides" style="background-image: url('/assets-and-images/images/churchFront.webp');"></div>
+            <div class="mySlides" style="background-image: url('/assets-and-images/images/streetSign.webp');"></div>
             <div class="mySlides" style="background-image: url('/assets-and-images/ss-choir.jpg');"></div>
             <div class="mySlides" style="background-image: url('/assets-and-images/sanctuary.jpg');"></div>
             <div class="mySlides" style="background-image: url('/assets-and-images/youth-mmchoir.jpeg');"></div>
@@ -55,9 +56,9 @@
       </section>
       <section class="events-sec">
           <h1>Upcoming Events</h1>
-          <div></div>
+          <div id="events-container" class="event-container"></div>
       </section>
-      <section id="verse-of-the-day"  class="verse-sec" style="letter-spacing: 5px; padding: 2rem; gap: 20px; background-image:url('/assets-and-images/verses-background.jpg'); background-color: rgba(0, 0, 0, 0.624);">
+      <section id="verse-of-the-day"  class="verse-sec" style="letter-spacing: 5px; padding: 2rem; gap: 20px; background-image:url('/assets-and-images/images/verses-background.webp'); background-color: rgba(0, 0, 0, 0.624);">
           <h1>Verse of the Day</h1>
           <blockquote id="verse-text" style="color: #f6f6ff; letter-spacing: 5px;  font-size: clamp(1rem, 2vw, 3.6rem);  ">Loading...</blockquote>
           <p id="verse-reference" style="font-weight: bold; color: #ffd369; letter-spacing: 5px;  font-size: clamp(1rem, 2vw, 3.6rem);"></p>
@@ -117,5 +118,70 @@
           document.getElementById("verse-text").textContent = "Verse not available.";
         });
     </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        
+          fetch('/json/featured-events.json')
+              .then(response => response.json())
+              .then(events => {
+                  const today = new Date();
+                  console.log("Loaded events:", events); // Add this line
+
+      
+                  function parseDate(whenString) {
+                      const todayYear = new Date().getFullYear();
+                      const match = whenString.match(/([A-Za-z]+) (\d+)/);
+                      if (!match) return null;
+      
+                      const [_, monthName, day] = match;
+                      const date = new Date(`${monthName} ${day}, ${todayYear}`);
+                      return isNaN(date.getTime()) ? null : date;
+                  }
+      
+                  const upcomingEvents = events
+                      .map(event => ({
+                          ...event,
+                          date: parseDate(event.when)
+                      }))
+                      .filter(event => event.date && event.date >= today)
+                      .sort((a, b) => a.date - b.date)
+                      .slice(0, 3);
+      
+                  const container = document.getElementById('events-container');
+      
+                  upcomingEvents.forEach(event => {
+                      const btn = document.createElement('button');
+                      btn.className = 'event-item';
+                      btn.onclick = function () {
+                          toggleEvent(this);
+                      };
+      
+                      btn.innerHTML = `
+                          <div class="event-layout">
+                              <div class="event-left">${event.when}</div>
+                              <div class="event-middle">${event.title}</div>
+                              <div class="event-right"></div>
+                          </div>
+                          <div class="event-flyer">
+                              <div class="event-details">
+                                  <div>${event.details}</div>
+                              </div>
+                              <div class="media-container">
+                                  ${event.media === 'video' 
+                                      ? `<video src="../assets-and-images/${event.title.toLowerCase().replace(/\s+/g, '-')}.mp4" controls muted></video>`
+                                      : `<img src="../assets-and-images/${event.title.toLowerCase().replace(/\s+/g, '-')}.jpg" alt="${event.title}">`
+                                  }
+                              </div>
+                          </div>
+                      `;
+                      container.appendChild(btn);
+                  });
+              })
+              .catch(error => {
+                  console.error("Failed to load events JSON:", error);
+              });
+      });
+      </script>
+      
   </body>
 </html>
