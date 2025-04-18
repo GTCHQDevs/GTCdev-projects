@@ -104,7 +104,7 @@
       const today = new Date();
       const daySeed = today.getFullYear() * 1000 + today.getMonth() * 100 + today.getDate(); 
       
-      fetch("Data/verses.json")
+      fetch("data/verses.json")
         .then(res => res.json())
         .then(verses => {
           const index = getDailyRandomIndex(daySeed, verses.length);
