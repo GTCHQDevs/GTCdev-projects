@@ -1,0 +1,90 @@
+<style>
+  #countdown-section {
+  text-align: center;
+  padding: 2rem;
+  background: #f0f0f07c;
+  background-color: filter blur(0.5px);
+  font-family: sans-serif;
+  border-radius: 8px;
+  max-width: 100%;
+  margin: auto;
+}
+
+.countdown {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.in-progress {
+  font-size: 1.5rem;
+  color: #cc0000;
+  margin-top: 1rem;
+}
+</style>
+<section id="countdown-section">
+  <h2 id="countdown-heading">Next Service Starts In:</h2>
+  <div class="countdown" id="countdown-timer">
+    <span id="days">--</span> Days :
+    <span id="hours">--</span> Hours :
+    <span id="minutes">--</span> Minutes :
+    <span id="seconds">--</span> Seconds
+  </div>
+  <div class="in-progress" id="in-progress-msg" style="display: none;">
+    <strong>Service In Progress</strong>
+  </div>
+</section>
+<script>
+  function getNextSundayAt10AM(fromDate = new Date()) {
+    const nextSunday = new Date(fromDate);
+    const daysUntilSunday = (7 - nextSunday.getDay()) % 7 || 7;
+    nextSunday.setDate(fromDate.getDate() + daysUntilSunday);
+    nextSunday.setHours(10, 0, 0, 0);
+    return nextSunday;
+  }
+  
+  function updateCountdown() {
+    const now = new Date();
+    const day = now.getDay();
+    const hour = now.getHours();
+  
+    const countdownEl = document.getElementById('countdown-timer');
+    const progressMsg = document.getElementById('in-progress-msg');
+    const heading = document.getElementById('countdown-heading');
+  
+    // If it's Sunday between 10 AM and 3 PM
+    if (day === 0 && hour >= 10 && hour < 15) {
+      countdownEl.style.display = 'none';
+      progressMsg.style.display = 'block';
+      heading.textContent = "Current Status:";
+      return;
+    }
+  
+    // Resume countdown to the next Sunday
+    progressMsg.style.display = 'none';
+    countdownEl.style.display = 'block';
+    heading.textContent = "Next Service Starts In:";
+  
+    let target = getNextSundayAt10AM();
+  
+    // If it's already Sunday after 3pm, count to the *next* Sunday
+    if (day === 0 && hour >= 15) {
+      target = getNextSundayAt10AM(new Date(now.getTime() + 86400000)); // +1 day
+    }
+  
+    const diff = target - now;
+  
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+  
+    document.getElementById('days').textContent = String(days).padStart(2, '0');
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  }
+  
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+  </script>
