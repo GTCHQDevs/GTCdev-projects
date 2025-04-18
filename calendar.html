@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/styles/general.css">
   <link rel="stylesheet" href="/styles/calendar2.css">
   <link rel="stylesheet" href="/styles/backToTop.css">
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
   <link rel="icon" type="image/x-icon" href="/assets-and-images/favicon.ico">
 </head>
 <body>
@@ -35,6 +36,9 @@
   const calendar = new FullCalendar.Calendar(calendarEl, {
     initialView: 'dayGridMonth',
     events: '/Data/events.JSON', 
+    eventTextColor: '#fff',
+    allDayDefault: false,
+    dayMaxEvents: false,
    
       headerToolbar: {
           left: 'prev',
