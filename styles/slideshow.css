@@ -1,11 +1,11 @@
 .mySlides {
   display: none;
-  animation: fade 0.85s ease-in-out;
+  animation: fade 1.2s ease-in-out;
   width: 100%;
   height: 700px;
   background-size: cover;
   background-position: center;
-  filter: brightness(0.8);
+  filter: brightness(0.55);
 }
 
 @keyframes fade {

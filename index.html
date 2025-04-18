@@ -34,33 +34,40 @@
       </div>
     <main>
       <section class="welcome-sec">
-        <div class="p-welcome">
-          <h2>Gospel Tabernacle Church</h2>
-          <h4>Snyder Avenue</h4>
-          <p class="msg"  style="
-            width: 100%;
-            font-size: clamp(1rem, 1vw, 2.5rem);
-            font-weight: 300;
-            font-family: poppins;
-            text-align: center;">
-        We’re so glad you’ve found your way to our new church website! GTC Snyder is a place where faith grows, lives are transformed, and community is built. Whether you're new to the area, searching for a church home, or just exploring, we welcome you with open arms.<br></br>
-      
-      Here, you'll find information about our services, ministries, and ways to connect. More than anything, we hope you’ll experience the love of Christ and the warmth of our church family.
+          <div class="p-welcome">
+              <h2>Gospel Tabernacle Church</h2>
+              <h4>Snyder Avenue</h4>
+              <p class="msg"  style="
+                width: 100%;
+                font-size: clamp(1rem, 1vw, 2.5rem);
+                font-weight: 300;
+                font-family: poppins;
+                text-align: center;">
+                We’re so glad you’ve found your way to our new church website! GTC Snyder is a place where faith grows, lives are transformed, and community is built. Whether you're new to the area, searching for a church home, or just exploring, we welcome you with open arms.<br></br>
+              
+                Here, you'll find information about our services, ministries, and ways to connect. More than anything, we hope you’ll experience the love of Christ and the warmth of our church family.
 
-      We invite you to join us in worship and fellowship—we can’t wait to meet you!
-          </p>
-        </div>
+                We invite you to join us in worship and fellowship—we can’t wait to meet you!
+              </p>
+            </div>
         <div class="welcome-pic"  style="height: 300;
         width: 400px;"></div>
       </section>
-      <section></section>
-      <section></section>
+      <section class="events-sec">
+          <h1>Upcoming Events</h1>
+          <div></div>
+      </section>
+      <section id="verse-of-the-day"  class="verse-sec" style="letter-spacing: 5px; padding: 2rem; gap: 20px; background-image:url('/assets-and-images/verses-background.jpg'); background-color: rgba(0, 0, 0, 0.624);">
+          <h1>Verse of the Day</h1>
+          <blockquote id="verse-text" style="color: #f6f6ff; letter-spacing: 5px;  font-size: clamp(1rem, 2vw, 3.6rem);  ">Loading...</blockquote>
+          <p id="verse-reference" style="font-weight: bold; color: #ffd369; letter-spacing: 5px;  font-size: clamp(1rem, 2vw, 3.6rem);"></p>
+      </section>
       <section></section>
     </main>
     <button onclick="topFunction()" id="backToTop" title="Go to top">
-      <img class="btn-img"  src="/assets-and-images/backToTop.svg" alt="Back to Top">
+        <img class="btn-img"  src="/assets-and-images/backToTop.svg" alt="Back to Top">
     </button>
-      <div id="footer"></div>
+        <div id="footer"></div>
     <script src="../scripts/include.js"></script>
     <script src="/scripts/menu.js"></script>
     <script src="/scripts/slides.js"></script>
@@ -87,6 +94,28 @@
           document.body.scrollTop = 0; // For Safari
           document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
+    </script>
+    <script>
+      function getDailyRandomIndex(seed, length) {
+        const x = Math.sin(seed) * 10000;
+        return Math.floor((x - Math.floor(x)) * length);
+      }
+      
+      const today = new Date();
+      const daySeed = today.getFullYear() * 1000 + today.getMonth() * 100 + today.getDate(); 
+      
+      fetch("Data/verses.json")
+        .then(res => res.json())
+        .then(verses => {
+          const index = getDailyRandomIndex(daySeed, verses.length);
+          const verse = verses[index];
+      
+          document.getElementById("verse-text").textContent = `"${verse.text}"`;
+          document.getElementById("verse-reference").textContent = verse.reference;
+        })
+        .catch(() => {
+          document.getElementById("verse-text").textContent = "Verse not available.";
+        });
     </script>
   </body>
 </html>
