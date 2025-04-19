@@ -28,7 +28,7 @@ footer {
   min-width: 280px;
 }
 
-.temporary-logo {
+.logo {
   display: flex;
   width: 100%;
   margin-bottom: 10px;
@@ -154,7 +154,6 @@ footer {
 .contact-icon {
   width: 18px;
   height: 18px;
-  filter: invert(91%) sepia(6%) hue-rotate(162deg) saturate(456%) brightness(110%);
   transition: filter 0.3s ease;
 }
 
@@ -191,10 +190,6 @@ footer {
 }
 
 /* Map styling */
-.map-preview {
-  margin-top: 15px;
-}
-
 .map-placeholder {
   position: relative;
   width: 100%;
@@ -241,6 +236,35 @@ footer {
 }
 
 /* Resizing */
+@media screen and (max-width: 1200px) {
+  footer {
+    flex-direction: column;
+    height: auto;
+    padding-bottom: 20px;
+  }
+  
+  .f-left, .f-middle, .f-right {
+    flex: none;
+    width: 100%;
+    margin-bottom: 20px;
+    min-width: unset; 
+  }
+
+  .f-left {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .f-middle2 {
+  display: none;
+  }
+  
+  .links-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media screen and (max-width: 920px) {  
   footer {
     flex-direction: column;
@@ -253,6 +277,15 @@ footer {
     width: 100%;
     margin-bottom: 20px;
     min-width: unset; 
+  }
+
+  .f-left {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .f-middle2 {
+  display: none;
   }
   
   .links-list {
