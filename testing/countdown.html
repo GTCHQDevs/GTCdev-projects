@@ -35,56 +35,65 @@
   </div>
 </section>
 <script>
-  function getNextSundayAt10AM(fromDate = new Date()) {
-    const nextSunday = new Date(fromDate);
-    const daysUntilSunday = (7 - nextSunday.getDay()) % 7 || 7;
+function getNextSundayAt1130AM(fromDate = new Date()) {
+  const nextSunday = new Date(fromDate);
+  const daysUntilSunday = (7 - nextSunday.getDay()) % 7 || 7;
+
+  // If today is Sunday and before 11:30 AM, target today
+  if (nextSunday.getDay() === 0 && (nextSunday.getHours() < 11 || (nextSunday.getHours() === 11 && nextSunday.getMinutes() < 30))) {
+    nextSunday.setHours(11, 30, 0, 0); // Set to 11:30 AM today
+  } else {
+    // Otherwise, calculate the next Sunday
     nextSunday.setDate(fromDate.getDate() + daysUntilSunday);
-    nextSunday.setHours(10, 0, 0, 0);
-    return nextSunday;
+    nextSunday.setHours(11, 30, 0, 0); // Set to 11:30 AM
   }
-  
-  function updateCountdown() {
-    const now = new Date();
-    const day = now.getDay();
-    const hour = now.getHours();
-  
-    const countdownEl = document.getElementById('countdown-timer');
-    const progressMsg = document.getElementById('in-progress-msg');
-    const heading = document.getElementById('countdown-heading');
-  
-    // If it's Sunday between 10 AM and 3 PM
-    if (day === 0 && hour >= 10 && hour < 15) {
-      countdownEl.style.display = 'none';
-      progressMsg.style.display = 'block';
-      heading.textContent = "Current Status:";
-      return;
-    }
-  
-    // Resume countdown to the next Sunday
-    progressMsg.style.display = 'none';
-    countdownEl.style.display = 'block';
-    heading.textContent = "Next Service Starts In:";
-  
-    let target = getNextSundayAt10AM();
-  
-    // If it's already Sunday after 3pm, count to the *next* Sunday
-    if (day === 0 && hour >= 15) {
-      target = getNextSundayAt10AM(new Date(now.getTime() + 86400000)); // +1 day
-    }
-  
-    const diff = target - now;
-  
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-  
-    document.getElementById('days').textContent = String(days).padStart(2, '0');
-    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+  return nextSunday;
+}
+
+function updateCountdown() {
+  const now = new Date();
+  const day = now.getDay();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+
+  const countdownEl = document.getElementById('countdown-timer');
+  const progressMsg = document.getElementById('in-progress-msg');
+  const heading = document.getElementById('countdown-heading');
+
+  // If it's Sunday between 11:30 AM and 3:00 PM
+  if (day === 0 && (hour > 11 || (hour === 11 && minute >= 30)) && hour < 15) {
+    countdownEl.style.display = 'none';
+    progressMsg.style.display = 'block';
+    heading.textContent = "Current Status:";
+    return;
   }
-  
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
-  </script>
+
+  // Resume countdown to the next Sunday
+  progressMsg.style.display = 'none';
+  countdownEl.style.display = 'block';
+  heading.textContent = "Next Service Starts In:";
+
+  let target = getNextSundayAt1130AM();
+
+  // If it's already Sunday after 3:00 PM, count to the *next* Sunday
+  if (day === 0 && hour >= 15) {
+    target = getNextSundayAt1130AM(new Date(now.getTime() + 86400000)); // +1 day
+  }
+
+  const diff = target - now;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  document.getElementById('days').textContent = String(days).padStart(2, '0');
+  document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
