@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="website/styles/navbar.css">
+        <link rel="stylesheet" href="website/styles/test-devpage.css">
+        <link rel="stylesheet" href="../styles/general.css">
+
+        
+
+    </head>
+    <body>
+        <div id="header"></div>
+        <div class="temp-banner"></div>
+
+  <script>
+    // Auto-load navbar
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('navbar-container').innerHTML = html
+      })
+  </script>
+        
+        
+        <div id="footer"></div>
+    </footer>
+    <script>
+        function loadComponent(elementId, filePath) {
+            fetch(filePath) // Get the file
+              .then(response => response.text()) // Convert response to text
+              .then(data => {
+                document.getElementById(elementId).innerHTML = data; // Insert into the page
+              })
+              .catch(error => console.log("Error loading " + filePath, error)); // Handle errors
+          }
+          // Run this when the page loads
+          window.onload = function() {
+            loadComponent("header", "../components/header.html"); // Load header
+            loadComponent("footer", "../components/footer.html"); // Load footer
+          }
+      </script>
+
+        <script src="" async defer></script>
+    </body>
+</html>
