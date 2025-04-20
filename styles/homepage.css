@@ -1,4 +1,4 @@
- .welcome-msg h1{
+.welcome-msg h1{
   font-family: Mr Dafoe;
   display: flex;
   text-align: center;
@@ -47,94 +47,54 @@
   background-color: rgba(240, 248, 255, 0.033);
 }
 
-@media (max-width: 700px) {
-  .welcome-sec {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top: 20px; 
-    padding-bottom: 20px; 
-    height: 100;
-  }
- 
-   .welcome-msg {
-     padding-left: 15px;
-     padding-right: 10px;
-     padding-bottom: 10px;
-     top: 150px;
-   }
 
-   .p-welcome{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 600px;
-    border: 1px solid #ccc;
-    gap: 5px;
-    padding-top: 10px;
-   }  
- }
-
- .welcome-sec{
-  padding-top: 50px;
-  padding-bottom:50px;
-  padding-left: min(4.5em, 6%);
-  padding-right: min(4.5em, 6%);
-  height: 600px;
+.welcome-sec {
+  margin-top: 20px; 
+  padding: 50px min(4.5em, 6%);
   position: relative;
   display: flex;
-  flex: row;
+  flex-direction: row;
   justify-content: space-around;
   align-items: center;
   border-style: dotted;
   border-width: 1px;
- }
+  clear: both; 
+}
 
-.p-welcome{
+.p-welcome {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: min(100%, 400px);
-  margin: 30px auto;
+  width: min(100%, 600px);
   border: 1px solid #ccc;
+  padding: 25px;
+  box-sizing: border-box;
 }
 
-@media (max-width: 700px) {
-  .welcome-sec {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-top: 20px; 
-    padding-bottom: 20px; 
-  }
-  .live{
-    top: 90px;
-    width: 90%;
-    height: 100px;
-    background-color: #e9e9e97a;
-    color: #f1c404;
-    gap: none;
-  }
-  .spic{
-    filter: invert(13%) sepia(88%) saturate(7491%) hue-rotate(0deg) brightness(97%) contrast(107%);
-  }
-
-  .verse-sec{
-    height: 250px;
-  }
+.msg {
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 300;
+  font-family: poppins;
+  text-align: center;
+  margin-bottom: 15px; /* Add spacing between paragraphs */
 }
 
-.events-sec{
-  padding-top: 50px;
-  padding-bottom:50px;
-  padding-left: min(4.5em, 6%);
-  padding-right: min(4.5em, 6%);
+.msg p {
+  margin-bottom: 15px;
+}
+
+.msg p:last-child {
+  margin-bottom: 0;
+}
+
+
+.events-sec {
+  padding: 50px min(4.5em, 6%);
   gap: 30px;
-  height: 600px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -143,26 +103,62 @@
   align-items: center;
   border-style: dotted;
   border-width: 1px;
+  margin-top: 30px; 
 }
-.events-sec h1{
+
+.events-sec h1 {
   font-size: clamp(2rem, 6vw, 4rem);
 }
-.verse-sec{
+
+.verse-sec {
   display: flex;
   flex-direction: column;
-  padding-top: 50px;
-  padding-bottom:50px;
-  height: 400px;
+  padding: 50px min(4.5em, 6%);
   border-style: dotted;
   border-width: 1px;
   justify-content: start;
-  align-items:center;
+  align-items: center;
   text-align: center;
-  gap: min(20px 8%);
+  gap: min(20px, 8%);
   background-size: cover;
   background-position: center;
+  margin-top: 30px; 
 }
-.verse-sec h1{
+
+.verse-sec h1 {
   font-size: clamp(2rem, 6vw, 4rem);
   color: #fff;
+}
+
+@media (max-width: 700px) {
+  .welcome-sec {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px min(3em, 4%);
+  }
+
+  .welcome-msg {
+    padding-left: 15px;
+    padding-right: 10px;
+    top: 150px;
+  }
+
+  .p-welcome {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .live {
+    top: 90px;
+    width: 90%;
+    height: 100px;
+    background-color: #e9e9e97a;
+    color: #f1c404;
+    gap: 0;
+  }
+
+  .spic {
+    filter: invert(13%) sepia(88%) saturate(7491%) hue-rotate(0deg) brightness(97%) contrast(107%);
+  }
 }
