@@ -11,18 +11,40 @@
     border-radius: 12px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   }
-
-  .countdown {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    color: #333;
+  .countdown-section {
+    position: relative;
+    text-align: center;
+    padding: 2rem 1.5rem 3rem;
+    background: #f9f9f9;
+    font-family: 'Poppins', sans-serif;
+    color: #444;
+    max-width: 100%;
+    margin: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   }
 
-  .in-progress {
-    font-size: 1.5rem;
-    color: #cc0000;
-    margin-top: 1rem;
+    .countdown {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+    color: #333;
+      color: #333;
+  }
+
+    .in-progress {
+      font-size: 1.5rem;
+      color: #cc0000;
+      margin-top: 1rem;
+    }
+
+  .wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    z-index: -1;
   }
 
   .wave {
@@ -36,6 +58,8 @@
 </style>
 <section id="countdown-section" class="countdown-section">
   <h2 id="countdown-heading">Sunday Service Starts In:</h2>
+<section id="countdown-section" class="countdown-section">
+  <h2 id="countdown-heading">Sunday Service Starts In:</h2>
   <div class="countdown" id="countdown-timer">
     <span id="days">--</span> Days :
     <span id="hours">--</span> Hours :
@@ -45,6 +69,9 @@
   <div class="in-progress" id="in-progress-msg" style="display: none;">
     <strong>Service In Progress</strong>
   </div>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" class="wave">
+    <path class="elementor-shape-fill" d="M1000,40 C800,100 200,100 0,40 V0H1000V40z" fill="#f9f9f9"></path>
+  </svg>
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" class="wave">
     <path class="elementor-shape-fill" d="M1000,40 C800,100 200,100 0,40 V0H1000V40z" fill="#f9f9f9"></path>
   </svg>
