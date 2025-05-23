@@ -132,7 +132,7 @@ body {
 .hamburger {
   display: none;
   background: none;
-  border: 1px solid #2D2D2D; 
+  border: 1px solid #fff; 
   padding: 8px 12px;
   cursor: pointer;
 }

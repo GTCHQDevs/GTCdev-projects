@@ -11,6 +11,54 @@
     <link rel="stylesheet" href="/styles/slideshow.css">
     <link rel="stylesheet" href="/styles/backToTop.css">
     <link rel="stylesheet" href="/styles/calendar.css">
+    <style>
+      .countdown-section {
+        margin-top: 1rem;
+        position: relative;
+        text-align: center;
+        padding: 0rem 1.5rem 3rem;
+        background: #9b1b30;
+        font-family: 'Poppins', sans-serif;
+        color: #f5f5f5;
+        max-width: 100%;
+        margin: auto;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
+      }
+
+      .countdown-section h2{
+        padding-top: 10px;
+      }
+    
+      .countdown {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 1rem;
+        color: #f5f5f5;
+      }
+    
+      .in-progress {
+        font-size: 1.5rem;
+        color: #cc0000;
+        margin-top: 1rem;
+      }
+    
+      .wave {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 30px;
+        z-index: -1;
+      }
+      @media (min-width: 768px) {
+  .wave path {
+    d: path("M1000,40 C800,100 200,100 0,40 V0H1000V40z");
+  }
+}
+
+    </style>
   </head>
 
   <body> 
@@ -47,15 +95,29 @@
         <div class="welcome-pic"></div>
       </section>
       </section>
+      <section id="countdown-section" class="countdown-section">
+        <h2 id="countdown-heading">Sunday Service Starts In:</h2>
+        <div class="countdown" id="countdown-timer">
+          <span id="days">--</span> Days :
+          <span id="hours">--</span> Hours :
+          <span id="minutes">--</span> Minutes :
+          <span id="seconds">--</span> Seconds
+        </div>
+        <div class="in-progress" id="in-progress-msg" style="display: none;">
+          <strong>Service In Progress</strong>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none" class="wave">
+          <path class="elementor-shape-fill" d="M1000,40 C800,100 200,100 0,40 V0H1000V40z" fill="#9b1b30"></path>
+        </svg>
+      </section>
       <section class="events-sec">
           <h1>Upcoming Events</h1>
           <div id="events-container" class="event-container"></div>
       </section>
-      <section id="verse-of-the-day"  class="verse-sec" style="letter-spacing: 5px; padding: 2rem; gap: 20px;   
-  background-image:url('/assets-and-images/images/verses-background.webp'); background-color: rgba(0, 0, 0, 0.624);">
+      <section id="verse-of-the-day"  class="verse-sec" style="letter-spacing: 5px; padding: 2rem; gap: 20px; background-image:url('/assets-and-images/images/verses-background.webp'); background-color: rgba(0, 0, 0, 0.624);">
           <h1>Verse of the Day</h1>
-          <blockquote id="verse-text" style="background: #00000027; color: #f9f9f9; letter-spacing: 5px;  font-size: clamp(.8rem, 1.9vw, 3.4rem);    ">Loading...</blockquote>
-          <p id="verse-reference" style="font-weight: bold; color: #ffd369; letter-spacing: 5px;  font-size: clamp(1rem, 2vw, 3.6rem);"></p>
+          <blockquote id="verse-text" style="background: #00000027; color: #f9f9f9; letter-spacing: 5px;  font-size: clamp(1rem, 1.9vw, 3.4rem);    ">Loading...</blockquote>
+          <p id="verse-reference" style="font-weight: bold; color: #ffd369; letter-spacing: 5px;  font-size: clamp(1.4rem, 1.5vw, 3.6rem);"></p>
       </section>
       <section></section>
     </main>
@@ -66,7 +128,7 @@
     <script src="../scripts/include.js"></script>
     <script src="/scripts/menu.js"></script>
     <script src="/scripts/slides.js"></script>
-    <script>
+    <script> // Back to top script //
         let mybutton = document.getElementById("backToTop");
 
         // When user scrolls 20px from top, button shows
@@ -90,7 +152,7 @@
           document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
     </script>
-    <script>
+    <script> // Verse of the Day script //
       function getDailyRandomIndex(seed, length) {
         const x = Math.sin(seed) * 10000;
         return Math.floor((x - Math.floor(x)) * length);
@@ -112,7 +174,7 @@
           document.getElementById("verse-text").textContent = "Verse not available.";
         });
     </script>
-    <script>
+    <script> // Events Section script //
       document.addEventListener('DOMContentLoaded', () => {
         
           fetch('/json/featured-events.json')
@@ -176,6 +238,59 @@
               });
       });
     </script>
+    <script> // Countdown Timer script //
+      function getNextSundayAt10AM(fromDate = new Date()) {
+        const nextSunday = new Date(fromDate);
+        const daysUntilSunday = (7 - nextSunday.getDay()) % 7 || 7;
+        nextSunday.setDate(fromDate.getDate() + daysUntilSunday);
+        nextSunday.setHours(10, 0, 0, 0);
+        return nextSunday;
+      }
       
+      function updateCountdown() {
+        const now = new Date();
+        const day = now.getDay();
+        const hour = now.getHours();
+      
+        const countdownEl = document.getElementById('countdown-timer');
+        const progressMsg = document.getElementById('in-progress-msg');
+        const heading = document.getElementById('countdown-heading');
+      
+        // If it's Sunday between 10 AM and 3 PM
+        if (day === 0 && hour >= 10 && hour < 15) {
+          countdownEl.style.display = 'none';
+          progressMsg.style.display = 'block';
+          heading.textContent = "Current Status:";
+          return;
+        }
+      
+        // Resume countdown to the next Sunday
+        progressMsg.style.display = 'none';
+        countdownEl.style.display = 'block';
+        heading.textContent = "Sunday Service Starts In:";
+      
+        let target = getNextSundayAt10AM();
+      
+        // If it's already Sunday after 3pm, count to the *next* Sunday
+        if (day === 0 && hour >= 15) {
+          target = getNextSundayAt10AM(new Date(now.getTime() + 86400000)); // +1 day
+        }
+      
+        const diff = target - now;
+      
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+      
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+      }
+      
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+    </script>
   </body>
 </html>

@@ -58,8 +58,10 @@
   align-items: center;
   border-style: dotted;
   border-width: 1px;
-  clear: both; 
-}
+  border-radius: 16px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+ }
 
 .p-welcome {
   display: flex;
@@ -103,7 +105,9 @@
   align-items: center;
   border-style: dotted;
   border-width: 1px;
-  margin-top: 30px; 
+  border-radius: 16px;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
 .events-sec h1 {
@@ -122,7 +126,7 @@
   gap: min(20px, 8%);
   background-size: cover;
   background-position: center;
-  margin-top: 30px; 
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
 .verse-sec h1 {
