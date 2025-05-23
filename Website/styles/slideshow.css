@@ -6,6 +6,7 @@
   background-size: cover;
   background-position: center;
   filter: brightness(0.55);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
 @keyframes fade {
