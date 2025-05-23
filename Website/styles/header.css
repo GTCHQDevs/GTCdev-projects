@@ -229,6 +229,10 @@ body {
 }
 
 @media screen and (max-width: 920px) {
+
+  header {
+    background-color:#981b30bb;
+  }
   nav {
       display: flex;
       justify-content: space-between;
