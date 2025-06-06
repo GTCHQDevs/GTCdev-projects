@@ -230,9 +230,6 @@ body {
 
 @media screen and (max-width: 920px) {
 
-  header {
-    background-color:#981b30bb;
-  }
   nav {
       display: flex;
       justify-content: space-between;
@@ -264,10 +261,6 @@ body {
       padding-right: 20px;
   }
 }
-
-
-
-
 
 /* Social Media Icons In Mobile Navbar */
 .mobile-social-media {
