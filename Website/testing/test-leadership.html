@@ -9,9 +9,18 @@
             font-family: Arial, sans-serif;
             background: #FDF2E9;
             display: flex;
+            padding: 20px;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
+        }
+        .officer-sec {
+          display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            background: #FDF2E9;
+            border-radius: 10px;
         }
 
         .leaders-title {
@@ -23,11 +32,12 @@
 
         .leaders-container {
             display: flex;
+            align-items: space-between;
             overflow-x: auto;  
             scroll-snap-type: x mandatory; 
             gap: 15px;
             padding: 10px;
-            max-width: 90%;
+            max-width: 100%;
             border-radius: 10px;
             scrollbar-width: none; 
         }
@@ -39,8 +49,12 @@
 
     
         .leader-card {
+          display: flex;
             flex: 0 0 auto; 
+            flex-direction: column;
+            justify-content: space-between;
             width: 200px; 
+            height: 275px;
             text-align: center;
             background: white;
             padding: 10px;
@@ -64,11 +78,16 @@
             color: #2D2D2D;
             margin-top: 5px;
         }
+
+        .leader-info {
+          letter-spacing: 2px;
+          display: flex;
+          flex-direction: column;
+        }
     </style>
 </head>
 <body>
-
-
+  <section class="officer-sec">
     <!-- Deacons -->
     <div class="leaders-title">Deacons</div>
 
@@ -101,13 +120,17 @@
           </div>
           <div class="leader-card">
             <img src="../assets-and-images/pfp.jpeg" alt="Leader 1">
-            <div class="leader-name">Asha Grant</div>
-            <div class="ministry">Missions Department</div>
+            <div class="leader-info">
+              <div class="leader-name">Asha Grant</div>
+              <div class="ministry">Missions Department</div>
+            </div>
           </div>
           <div class="leader-card">
             <img src="../assets-and-images/pfp.jpeg" alt="Leader 1">
-            <div class="leader-name">Violet Cohen</div>
-            <div class="ministry">Hospitality</div>
+            <div class="leader-info">
+              <div class="leader-name">Violet Cohen</div>
+              <div class="ministry">Hospitality</div>
+            </div>
           </div>
           <div class="leader-card">
             <img src="../assets-and-images/pfp.jpeg" alt="Leader 1">
@@ -115,13 +138,17 @@
           </div>
           <div class="leader-card">
             <img src="../assets-and-images/pfp.jpeg" alt="Leader 1">
-            <div class="leader-name">Sherlene Gayle</div>
-            <div class="ministry">Youth Department</div>
+            <div class="leader-info">
+              <div class="leader-name">Sherlene Gayle</div>
+              <div class="ministry">Youth Department</div>
+            </div>
           </div>
           <div class="leader-card">
             <img src="../assets-and-images/pfp.jpeg" alt="Leader 1">
-            <div class="leader-name">Dorraine Watson</div>
-            <div class="ministry"> Women's Department</div>
+            <div class="leader-info">
+              <div class="leader-name">Dorraine Watson</div>
+              <div class="ministry"> Women's Department</div>
+            </div>
           </div>
     </div>
 
@@ -140,8 +167,10 @@
         </div>
         <div class="leader-card">
           <img src="../assets-and-images/pfp.jpeg" alt="Leader 1">
-          <div class="leader-name">Doneila Sinclair</div>
-          <div class="ministry"> Men's Department</div>
+          <div class="leader-info">
+            <div class="leader-name">Doneila Sinclair</div>
+            <div class="ministry"> Men's Department</div>
+          </div>
         </div>
   </div> 
 
@@ -188,9 +217,6 @@
         <div class="leader-name">Inez Manning</div>
       </div>
  </div>
-
-
-
-
+ </section>
 </body>
 </html>

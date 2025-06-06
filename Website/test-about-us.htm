@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us</title>
+  <link rel="stylesheet" href="../styles/general.css" />
+  <link rel="stylesheet" href="/styles/backToTop.css" />
+  <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="icon" type="image/x-icon" href="/assets-and-images/favicon.ico" />
+  <style>
+    /* Background section behind the header */
+    .top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 400px;
+      z-index: 0;
+    }
+
+    /* First visible section that sits on top of the background */
+    .first-sec {
+      position: relative;
+      z-index: 1;
+      min-height: 600px;
+      background-color: white;
+    }
+
+    /* Optional back-to-top button spacing */
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 10;
+    }
+
+    .mySlides {
+  width: 100%;
+  height: 700px;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.55);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+  </style>
+</head>
+<body>
+  <div id="header"></div>
+
+  <div class="top">
+    <div class="mySlides" style="background-image: url('/assets-and-images/images/churchFront.webp');"></div>
+  </div>
+
+  <main>
+    <section class="first-sec">
+      <h1>About Us</h1>
+      <p>Welcome to our About page. This section starts after the background.</p>
+    </section>
+  </main>
+
+  <button onclick="topFunction()" id="backToTop" title="Go to top">
+    <img class="btn-img" src="/assets-and-images/backToTop.svg" alt="Back to Top" />
+  </button>
+
+  <div id="footer"></div>
+    <script src="../scripts/include.js"></script>
+    <script src="/scripts/menu.js"></script>
+    <script src="/scripts/slides.js"></script>
+    <script> // Back to top script //
+        let mybutton = document.getElementById("backToTop");
+
+        // When user scrolls 20px from top, button shows
+        window.onscroll = function() {scrollFunction()};
+
+
+        function scrollFunction() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+          } else {
+            mybutton.style.display = "none";
+          }
+        }
+        window.topFunction = function () {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
+        // Button on click, returns to top
+        function topFunction() {
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+    </script>
+    <script> // Verse of the Day script //
+      function getDailyRandomIndex(seed, length) {
+        const x = Math.sin(seed) * 10000;
+        return Math.floor((x - Math.floor(x)) * length);
+      }
+      
+      const today = new Date();
+      const daySeed = today.getFullYear() * 1000 + today.getMonth() * 100 + today.getDate(); 
+      
+      fetch("json/verses.json")
+        .then(res => res.json())
+        .then(verses => {
+          const index = getDailyRandomIndex(daySeed, verses.length);
+          const verse = verses[index];
+      
+          document.getElementById("verse-text").textContent = `"${verse.text}"`;
+          document.getElementById("verse-reference").textContent = verse.reference;
+        })
+        .catch(() => {
+          document.getElementById("verse-text").textContent = "Verse not available.";
+        });
+    </script>
+    <script> // Events Section script //
+      document.addEventListener('DOMContentLoaded', () => {
+        
+          fetch('/json/featured-events.json')
+              .then(response => response.json())
+              .then(events => {
+                  const today = new Date();
+                  console.log("Loaded events:", events); // Add this line
+
+      
+                  function parseDate(whenString) {
+                      const todayYear = new Date().getFullYear();
+                      const match = whenString.match(/([A-Za-z]+) (\d+)/);
+                      if (!match) return null;
+      
+                      const [_, monthName, day] = match;
+                      const date = new Date(`${monthName} ${day}, ${todayYear}`);
+                      return isNaN(date.getTime()) ? null : date;
+                  }
+      
+                  const upcomingEvents = events
+                      .map(event => ({
+                          ...event,
+                          date: parseDate(event.when)
+                      }))
+                      .filter(event => event.date && event.date >= today)
+                      .sort((a, b) => a.date - b.date)
+                      .slice(0, 3);
+      
+                  const container = document.getElementById('events-container');
+      
+                  upcomingEvents.forEach(event => {
+                      const btn = document.createElement('button');
+                      btn.className = 'event-item';
+                      btn.onclick = function () {
+                          toggleEvent(this);
+                      };
+      
+                      btn.innerHTML = `
+                          <div class="event-layout">
+                              <div class="event-left">${event.when}</div>
+                              <div class="event-middle">${event.title}</div>
+                              <div class="event-right"></div>
+                          </div>
+                          <div class="event-flyer">
+                              <div class="event-details">
+                                  <div>${event.details}</div>
+                              </div>
+                              <div class="media-container">
+                                  ${event.media === 'video' 
+                                      ? `<video src="../assets-and-images/${event.title.toLowerCase().replace(/\s+/g, '-')}.mp4" controls muted></video>`
+                                      : `<img src="../assets-and-images/${event.title.toLowerCase().replace(/\s+/g, '-')}.jpg" alt="${event.title}">`
+                                  }
+                              </div>
+                          </div>
+                      `;
+                      container.appendChild(btn);
+                  });
+              })
+              .catch(error => {
+                  console.error("Failed to load events JSON:", error);
+              });
+      });
+    </script>
+    <script> // Countdown Timer script //
+      function getNextSundayAt10AM(fromDate = new Date()) {
+        const nextSunday = new Date(fromDate);
+        const daysUntilSunday = (7 - nextSunday.getDay()) % 7 || 7;
+        nextSunday.setDate(fromDate.getDate() + daysUntilSunday);
+        nextSunday.setHours(10, 0, 0, 0);
+        return nextSunday;
+      }
+      
+      function updateCountdown() {
+        const now = new Date();
+        const day = now.getDay();
+        const hour = now.getHours();
+      
+        const countdownEl = document.getElementById('countdown-timer');
+        const progressMsg = document.getElementById('in-progress-msg');
+        const heading = document.getElementById('countdown-heading');
+      
+        // If it's Sunday between 10 AM and 3 PM
+        if (day === 0 && hour >= 10 && hour < 15) {
+          countdownEl.style.display = 'none';
+          progressMsg.style.display = 'block';
+          heading.textContent = "Current Status:";
+          return;
+        }
+      
+        // Resume countdown to the next Sunday
+        progressMsg.style.display = 'none';
+        countdownEl.style.display = 'block';
+        heading.textContent = "Sunday Service Starts In:";
+      
+        let target = getNextSundayAt10AM();
+      
+        // If it's already Sunday after 3pm, count to the *next* Sunday
+        if (day === 0 && hour >= 15) {
+          target = getNextSundayAt10AM(new Date(now.getTime() + 86400000)); // +1 day
+        }
+      
+        const diff = target - now;
+      
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+      
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+      }
+      
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+    </script>
+  </body>
+</html>

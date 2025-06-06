@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((html) => {
         el.innerHTML = html;
 
-        // Dispatch a custom event after the content is loaded
         if (el.id === "header") {
           console.log("Dispatching headerLoaded event");
           document.dispatchEvent(new Event("headerLoaded"));

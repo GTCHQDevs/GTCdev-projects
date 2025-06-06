@@ -32,8 +32,5 @@ main{
   background-color:#981b30bb;
 }
 
-@media (max-width: 900px) {
-  .temp-banner{
-    background-color: transparent;
-  }}
+
 

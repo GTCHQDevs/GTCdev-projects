@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GTC Video Text Mask</title>
+<style>
+  /* Basic reset */
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .container {
+    position: relative;
+    width: 90vw;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  h1 {
+    position: relative;
+    font-family: 'Bebas Neue', sans-serif;
+    font-weight: 900;
+    font-size: clamp(10vw, 20vw, 25vw);
+    color: white;
+    
+
+    /* Make text transparent and clip video through */
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* Remove mix-blend-mode */
+    z-index: 2;
+    user-select: none;
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <video autoplay muted loop playsinline>
+      <source src="/assets-and-images/videos/test.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <h1>GTC</h1>
+  </div>
+</body>
+</html>
