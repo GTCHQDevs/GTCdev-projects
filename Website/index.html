@@ -194,69 +194,92 @@
         });
     </script>
     <script> // Events Section script //
-      document.addEventListener('DOMContentLoaded', () => {
-        
-          fetch('/json/featured-events.json')
-              .then(response => response.json())
-              .then(events => {
-                  const today = new Date();
-                  console.log("Loaded events:", events); // Add this line
+document.addEventListener('DOMContentLoaded', () => {
+    
+    fetch('/json/featured-events.json')
+        .then(response => response.json())
+        .then(events => {
+            const today = new Date();
+            console.log("Loaded events:", events); // For debugging
 
-      
-                  function parseDate(whenString) {
-                      const todayYear = new Date().getFullYear();
-                      const match = whenString.match(/([A-Za-z]+) (\d+)/);
-                      if (!match) return null;
-      
-                      const [_, monthName, day] = match;
-                      const date = new Date(`${monthName} ${day}, ${todayYear}`);
-                      return isNaN(date.getTime()) ? null : date;
-                  }
-      
-                  const upcomingEvents = events
-                      .map(event => ({
-                          ...event,
-                          date: parseDate(event.when)
-                      }))
-                      .filter(event => event.date && event.date >= today)
-                      .sort((a, b) => a.date - b.date)
-                      .slice(0, 3);
-      
-                  const container = document.getElementById('events-container');
-      
-                  upcomingEvents.forEach(event => {
-                      const btn = document.createElement('button');
-                      btn.className = 'event-item';
-                      btn.onclick = function () {
-                          toggleEvent(this);
-                      };
-      
-                      btn.innerHTML = `
-                          <div class="event-layout">
-                              <div class="event-left">${event.when}</div>
-                              <div class="event-middle">${event.title}</div>
-                              <div class="event-right"></div>
-                          </div>
-                          <div class="event-flyer">
-                              <div class="event-details">
-                                  <div>${event.details}</div>
-                              </div>
-                              <div class="media-container">
-                                  ${event.media === 'video' 
-                                      ? `<video src="../assets-and-images/${event.title.toLowerCase().replace(/\s+/g, '-')}.mp4" controls muted></video>`
-                                      : `<img src="../assets-and-images/${event.title.toLowerCase().replace(/\s+/g, '-')}.jpg" alt="${event.title}">`
-                                  }
-                              </div>
-                          </div>
-                      `;
-                      container.appendChild(btn);
-                  });
-              })
-              .catch(error => {
-                  console.error("Failed to load events JSON:", error);
-              });
-      });
-    </script>
+            // Improved parseDate function
+            function parseDate(whenString) {
+                const currentYear = new Date().getFullYear();
+
+               
+                const rangeMatch = whenString.match(/([A-Za-z]+)\s+(\d+)\s*-\s*([A-Za-z]+)?\s*(\d+)/);
+                if (rangeMatch) {
+                    const [, startMonth, startDay, endMonth, endDay] = rangeMatch;
+                    const month = startMonth; // Use start month for date sorting
+                    const day = startDay;
+                    const date = new Date(`${month} ${day}, ${currentYear}`);
+                    return isNaN(date.getTime()) ? null : date;
+                }
+
+                // Handle single dates like "July 20"
+                const singleMatch = whenString.match(/([A-Za-z]+)\s+(\d+)/);
+                if (singleMatch) {
+                    const [, monthName, day] = singleMatch;
+                    const date = new Date(`${monthName} ${day}, ${currentYear}`);
+                    return isNaN(date.getTime()) ? null : date;
+                }
+
+                return null;
+            }
+
+            const upcomingEvents = events
+                .map(event => ({
+                    ...event,
+                    date: parseDate(event.when)
+                }))
+                .filter(event => event.date && event.date >= today)
+                .sort((a, b) => a.date - b.date)
+                .slice(0, 3);
+
+            const container = document.getElementById('events-container');
+
+            // Optional: Show a message if no upcoming events
+            if (upcomingEvents.length === 0) {
+                container.innerHTML = '<p class="no-events">No upcoming events.</p>';
+                return;
+            }
+
+            upcomingEvents.forEach(event => {
+                const btn = document.createElement('button');
+                btn.className = 'event-item';
+                btn.onclick = function () {
+                    toggleEvent(this);
+                };
+
+                btn.innerHTML = `
+                    <div class="event-layout">
+                        <div class="event-left">${event.when}</div>
+                        <div class="event-middle">${event.title}</div>
+                        <div class="event-right"></div>
+                    </div>
+                    <div class="event-flyer">
+                        <div class="event-details">
+                            <div>${event.details}</div>
+                        </div>
+                        <div class="media-container">
+                            ${event.media === 'video' 
+                                ? `<video src="../assets-and-images/${event.title.toLowerCase().replace(/\s+/g, '-')}.mp4" controls muted></video>`
+                                : `<img src="../assets-and-images/${event.title.toLowerCase().replace(/\s+/g, '-')}.jpg" alt="${event.title}" onerror="this.src='../assets-and-images/fallback.jpg'">`
+                            }
+                        </div>
+                    </div>
+                `;
+                container.appendChild(btn);
+            });
+        })
+        .catch(error => {
+            console.error("Failed to load events JSON:", error);
+            const container = document.getElementById('events-container');
+            container.innerHTML = '<p class="error-message">Unable to load events at this time.</p>';
+        });
+});
+</script>
+  
     <script> // Countdown Timer script //
       function getNextSundayAt10AM(fromDate = new Date()) {
         const nextSunday = new Date(fromDate);
