@@ -1,98 +1,164 @@
-*{
+/* Global Reset */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-header{
-    position: absolute !important;
-}
-
 body {
-  margin: 0;
-  font-family: poppins;
+  font-family: 'Poppins', sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
   overflow-x: hidden;
-  background-color: ffffff;
-  height: 100%;
-  min-height: 100vh;
-  box-sizing: border-box;
 }
-.top{
-z-index: 1;
-width: 100%;
-height: 550px;
-background-color: lightblue;
+header {
+  position: absolute !important
 }
-.aboutUsSec {
-position: relative;
-margin-top: 20px; 
-width: 100%;
-height: 100vh;
-padding: 40px min(4.5em, 6%);
-position: relative;
-border-width: 1px;
-border-radius: 16px;
-margin-bottom: 40px;
-box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-text-align: center;
-object-fit: cover !important;
-}
-.infoSec{
-position: relative;
-margin-top: 20px; 
-width: 100%;
-height: 500px;
-padding: 50px min(4.5em, 6%);
-position: relative;
-border-width: 1px;
-border-radius: 16px;
-margin-bottom: 40px;
-box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-object-fit: contain;
-}
+
+/* Main Structure */
 main {
-width: 100%;
+  width: 100%;
 }
 
-.abtintro{
-font-size: 2rem;
+/* Section Styling */
+.sec {
+  width: 100%;
+  min-height: 100vh;
+  padding: 60px clamp(1.5rem, 4vw, 6rem);
+  text-align: center;
+  background-color: #f9f9f9;
+  border: none;
 }
 
-.wordBg{
-position: absolute;
-font-size: clamp(12rem, 10vw, 36rem);
-letter-spacing: 0px;
-width: 100%;
-font-weight: 900;
-white-space: nowrap;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-font-size: clamp(2rem, 15vw, 12rem); /* responsive size */
-font-weight: 900;
-text-align: center;
-color: transparent;
--webkit-text-stroke: 2px white; /* optional outline */
-background-clip: text;
--webkit-background-clip: text;
-background-size: cover;
-white-space: nowrap; /* prevents line break */
-max-width: 100%;
-overflow: hidden
+.sec:not(:last-of-type) {
+  border-bottom: 1px solid #e5e5e5;
 }
 
-.sec{
-position: relative;
-margin-top: 20px; 
-width: 100%;
-height: 100vh;
-padding: 40px min(4.5em, 6%);
-position: relative;
-border-width: 1px;
-border-radius: 16px;
-margin-bottom: 40px;
-box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-text-align: center;
-object-fit: cover !important;
-background-color: lightgrey
+/* Typography */
+h1, h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: 1px;
+  margin-bottom: 0.75em;
+  color: #1a1a1a;
+}
+p {
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  font-size: 1.1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 1.05rem;
+  color: #333;
+}
+ul li {
+  margin-bottom: 0.75rem;
+}
+
+/* Hero/Top Section */
+.top {
+  width: 100%;
+  height: 150px; /* REturn to 550 once we have an image */
+  background: linear-gradient(135deg, #9b1b30, #571e1e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Leaders Section */
+.leaders-sec {
+  background-color: #ffffff;
+  min-height: 600px;
+  padding: 30px 60px;
+}
+
+.leaders-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
+}
+.leaders-container::-webkit-scrollbar {
+  height: 8px;
+}
+.leaders-container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Leader Card */
+.leader-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;
+  width: 220px;
+  height: 300px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  scroll-snap-align: start;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.leader-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+.leader-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.leader-info {
+  padding: 12px;
+  font-size: 0.95rem;
+  color: #333;
+}
+.leader-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+.ministry {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  margin: 2rem auto;
+  max-width: 800px;
+}
+
+.service-item {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: center;
+  width: 100%;
+  max-width: 240px;
+}
+
+.location {
+  margin-top: 1.5rem;
+  font-size: 1.05rem;
+  color: #333;
 }

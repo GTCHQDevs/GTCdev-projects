@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Departments</title>
+  <link rel="stylesheet" href ="/styles/departments.css">
   <link rel="stylesheet" href="../styles/general.css">
   <link rel="stylesheet" href="/styles/backToTop.css">
   <link rel="icon" type="image/x-icon" href="/assets-and-images/favicon.ico">
@@ -11,10 +12,106 @@
 <body>
   <div id="header"></div>
   <div class="temp-banner"></div>
- 
-
   <main>
+      <section class="ministry-section">
 
+    <!-- Men's Department -->
+    <div class="ministry-container">
+      <div class="leader-card">
+       <img src="../assets-and-images/icons/temp-male-icon.svg"  alt="Owen Wattson">
+        <div class="leader-name">Owen Wattson</div>
+      </div>
+      <div class="ministry-block">
+        <div class="ministry-bg"></div>
+        <div class="ministry-content">
+          <h2>Men's Department</h2>
+          <p>Empowering men to lead spiritually and serve faithfully in their families, church, and community.</p>
+          <p class="vccs">Visual Content coming soon</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Women's Department -->
+    <div class="ministry-container">
+      <div class="leader-card">
+        <img src="../assets-and-images/icons/temp-female-icon.svg"  alt="Dorraine Wattson">
+        <div class="leader-name">Dorraine Wattson</div>
+      </div>
+      <div class="ministry-block">
+        <div class="ministry-bg"></div>
+        <div class="ministry-content">
+          <h2>Women's Department</h2>
+          <p>Supporting women through fellowship, faith-building, and outreach rooted in love and purpose.</p>
+          <p class="vccs">Visual Content coming soon</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Youth Department -->
+    <div class="ministry-container">
+      <div class="leader-card">
+        <img src="../assets-and-images/icons/temp-female-icon.svg"  alt="Sherlene Gayle">
+        <div class="leader-name">Sherlene Gayle</div>
+      </div>
+      <div class="ministry-block">
+        <div class="ministry-bg"></div>
+        <div class="ministry-content">
+          <h2>Youth Department</h2>
+          <p>Guiding young people to grow in Christ, discover their gifts, and impact their generation.</p>
+          <p class="vccs">Visual Content coming soon</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sunday School -->
+    <div class="ministry-container">
+      <div class="leader-card">
+        <img src="../assets-and-images/icons/temp-female-icon.svg" alt="Dr. Burrell">
+        <div class="leader-name">Dr. Burrell</div>
+      </div>
+      <div class="ministry-block">
+        <div class="ministry-bg"></div>
+        <div class="ministry-content">
+          <h2>Sunday School</h2>
+          <p>Teaching the Word of God with clarity and care to children, youth, and adults of all ages.</p>
+          <p class="vccs">Visual Content coming soon</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Missions & Outreach -->
+    <div class="ministry-container">
+      <div class="leader-card">
+        <img src="../assets-and-images/icons/temp-female-icon.svg"  alt="Missions Leader">
+        <div class="leader-name">Loading</div>
+      </div>
+      <div class="ministry-block">
+        <div class="ministry-bg"></div>
+        <div class="ministry-content">
+          <h2>Missions and Outreach</h2>
+          <p>Sharing Christ’s love beyond the church walls—locally and globally.</p>
+          <p class="vccs">Visual Content coming soon</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hospitality -->
+    <div class="ministry-container">
+      <div class="leader-card">
+        <img src="../assets-and-images/icons/temp-female-icon.svg"  alt="Hospitality Leader">
+        <div class="leader-name">Loading</div>
+      </div>
+      <div class="ministry-block">
+        <div class="ministry-bg"></div>
+        <div class="ministry-content">
+          <h2>Hospitality</h2>
+          <p>Welcoming every soul with warmth, care, and the heart of Christ.</p>
+          <p class="vccs">Visual Content coming soon</p>
+        </div>
+      </div>
+    </div>
+
+  </section>
   </main>
   
   <button onclick="topFunction()" id="backToTop" title="Go to top">
@@ -81,6 +178,14 @@
       });
   
       console.log("Menu script initialized");
+    });
+  </script>
+
+  <script>
+    const imagePath = '../assets-and-images/images/';
+    document.querySelectorAll('.ministry-block').forEach(block => {
+      const bg = block.getAttribute('data-bg');
+      block.querySelector('.ministry-bg').style.backgroundImage = `url('${imagePath}${bg}')`;
     });
   </script>
 </body>

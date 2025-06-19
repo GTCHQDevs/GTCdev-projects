@@ -5,7 +5,7 @@
 }
 
 footer {
-  background-color: #9b1b30;
+   background: linear-gradient(135deg, #9b1b30, #571e1e);
   color: #e6f7ff;
   position: relative;
   display: flex;
