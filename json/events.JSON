@@ -55,5 +55,12 @@
     "start": "2025-05-23T20:00:00",
     "end": "2025-05-25T23:00:00",
     "description": ""
-  }
+  },
+  {
+  "title": "International Holy Convocation",
+  "when": "June 30 - July 6",
+  "description": "Join us for a weekend of fellowship and empowerment!",
+  "details": "Mon -Sun: 8:00p",
+  "media": "image"
+}
 ]
