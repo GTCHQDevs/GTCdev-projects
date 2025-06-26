@@ -9,6 +9,30 @@
   <link rel="icon" type="image/x-icon" href="/assets-and-images/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
+    .leadershipLink{
+    background-color: #ffffff86;
+    box-sizing: border-box;
+    white-space: nowrap;
+    border-style: solid;
+    color: #f1c404;
+    font-size: clamp(.825rem, 1vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 2.2px;
+    border-width: 1px;
+    border-radius: 24px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-align: center;
+    transition: 0.25s;
+    }
+
+    .leadershipLink:hover {
+      background-color: #f1c404;
+      color: #ffffff;
+      text-decoration: none;
+    }
 
   </style>
 </head>
@@ -38,21 +62,26 @@
     <section class="sec leaders-sec">
       <h2>Our Leaders</h2>
       <p>Our church is guided by dedicated spiritual leaders who serve faithfully:</p>
+      <p>Click on each leader to learn more about them</p>
       <div class="leaders-container">
-        <div class="leader-card"> <!--Bishop-->
+        <a href="leadership.html#bishop">
+          <div class="leader-card"> <!--Bishop-->
           <img src="../assets-and-images/images/Bishop Picture.webp" alt="Bishop Kingsford A. Bloomfied">
           <div class="leader-info">
             <div class="leader-name">Kingsford A. Bloomfied</div>
             <div class="ministry">Presiding Bishop</div>
           </div>
-        </div>
-      <div class="leader-card"> <!--Pastor Gayle-->
+          </div>
+        </a>
+      <a href="leadership.html#pastor"> 
+        <div class="leader-card"> <!--Pastor Gayle-->
             <img src="../assets-and-images/images/Elder-Kev-pic.webp" alt="Pastor Kevin Gayle">
             <div class="leader-info">
               <div class="leader-name">Kevin Gayle</div>
               <div class="ministry">Pastor</div>
             </div>
-          </div>
+        </div>
+      </a>
         <div class="leader-card"> <!--Elder Davis-->
             <img src="../assets-and-images/icons/temp-male-icon.svg" alt="Elder Richard Davis">
             <div class="leader-info">
@@ -60,13 +89,15 @@
               <div class="ministry">Senior Elder</div>
             </div>
           </div>
-        <div class="leader-card">
-            <img src="assets-and-images/images/Elder-Watson.webp" alt="Elder Owen Wattson">
+      <a href="leadership.html#elder-wattson">
+        <div class="leader-card"> <!--Elder Wattson-->
+            <div class="leader-photo" style=" background-image: url(../assets-and-images/images/Elder-Watson.webp);"></div>
             <div class="leader-info">
               <div class="leader-name">Owen Wattson</div>
               <div class="ministry">Elder</div>
             </div>
-          </div>
+        </div>
+      </a>
         <div class="leader-card">
               <img src="../assets-and-images/icons/temp-female-icon.svg"alt="Dr Merlene Scott-Burrell">
               <div class="leader-info">
@@ -75,6 +106,11 @@
               </div>
           </div>
         </div>
+
+  <div>
+  <p class="leaders-note">More leaders are involved in various ministries and departments.</p>
+  <a class="leadershipLink"  href="leadership.html#officers">Get to know them here</a>
+  </div>
     </section>
   
     <!-- Service Times -->
@@ -112,5 +148,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
   <script src="/scripts/menu.js"></script>
+  <script src="/scripts/backToTop.js"></script>
 </body>
 </html>
