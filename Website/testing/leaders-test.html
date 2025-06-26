@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Leader Carousel with Center Focus</title>
+<style>
+  body {
+    font-family: sans-serif;
+    background: #f3f3f3;
+    margin: 2rem;
+  }
+  .carousel-container {
+    position: relative;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    height: 280px;
+  }
+  .carousel-track {
+    display: flex;
+    gap: 15px;
+    will-change: transform;
+    height: 100%;
+    align-items: center;
+  }
+  .leader-card {
+    flex: 0 0 180px;
+    height: 250px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    /* We'll animate scale and opacity */
+  }
+  .leader-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    pointer-events: none;
+  }
+  .leader-info {
+    padding: 5px;
+    font-size: 0.95rem;
+    color: #333;
+    text-align: center;
+  }
+  .leader-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  .ministry {
+    font-size: 0.75rem;
+    color: #666;
+  }
+  .arrow-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: #9B1B30;
+    color: white;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    user-select: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease;
+  }
+  .arrow-icon:hover {
+    background-color: #7e1627;
+  }
+  .arrow-left { left: 10px; }
+  .arrow-right { right: 10px; }
+  .leaders-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #9B1B30;
+    margin: 2rem 0 1rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+  <!-- Officers Carousel -->
+  <div class="leaders-title">Officers</div>
+  <div class="carousel-container" data-leaders='[
+    {"name":"Bannister McKenzie","img":"../assets-and-images/icons/temp-male-icon.svg"},
+    {"name":"Alphy Beckford","img":"../assets-and-images/icons/temp-male-icon.svg"},
+    {"name":"Franklin Rose","img":"../assets-and-images/icons/temp-male-icon.svg"},
+    {"name":"Herbert Riley","img":"../assets-and-images/icons/temp-male-icon.svg"},
+    {"name":"John Doe","img":"../assets-and-images/icons/temp-male-icon.svg"}
+  ]'>
+    <div class="arrow-icon arrow-left">&#x276E;</div>
+    <div class="carousel-track"></div>
+    <div class="arrow-icon arrow-right">&#x276F;</div>
+  </div>
+
+  <!-- Evangelists Carousel -->
+  <div class="leaders-title">Evangelists</div>
+  <div class="carousel-container" data-leaders='[
+    {"name":"Karlene Clarke","img":"../assets-and-images/icons/temp-female-icon.svg"},
+    {"name":"Asha Grant","img":"../assets-and-images/icons/temp-female-icon.svg","ministry":"Missions Department"},
+    {"name":"Violet Cohen","img":"../assets-and-images/icons/temp-female-icon.svg","ministry":"Hospitality"},
+    {"name":"Naina Dunkley","img":"../assets-and-images/icons/temp-female-icon.svg"},
+    {"name":"Sherlene Gayle","img":"../assets-and-images/icons/temp-female-icon.svg","ministry":"Youth Department"},
+    {"name":"Dorraine Watson","img":"../assets-and-images/icons/temp-female-icon.svg","ministry":"Womens Department"}
+  ]'>
+    <div class="arrow-icon arrow-left">&#x276E;</div>
+    <div class="carousel-track"></div>
+    <div class="arrow-icon arrow-right">&#x276F;</div>
+  </div>
+
+  <!-- Ministers Carousel -->
+  <div class="leaders-title">Ministers</div>
+  <div class="carousel-container" data-leaders='[
+    {"name":"Stacy-Ann Chambers","img":"../assets-and-images/icons/temp-female-icon.svg"},
+    {"name":"Keneisha Harrison","img":"../assets-and-images/icons/temp-female-icon.svg"},
+    {"name":"Doneila Sinclair","img":"../assets-and-images/icons/temp-male-icon.svg","ministry":"Mens Department"}
+  ]'>
+    <div class="arrow-icon arrow-left">&#x276E;</div>
+    <div class="carousel-track"></div>
+    <div class="arrow-icon arrow-right">&#x276F;</div>
+  </div>
+
+  <!-- Missionaries Carousel -->
+  <div class="leaders-title">Missionaries</div>
+  <div class="carousel-container" data-leaders='[
+    {"name":"Pauline Green","img":"../assets-and-images/icons/temp-female-icon.svg"},
+    {"name":"Judy-Ann Brown","img":"../assets-and-images/icons/temp-female-icon.svg"},
+    {"name":"Chaniel Thomas","img":"../assets-and-images/icons/temp-female-icon.svg"}
+  ]'>
+    <div class="arrow-icon arrow-left">&#x276E;</div>
+    <div class="carousel-track"></div>
+    <div class="arrow-icon arrow-right">&#x276F;</div>
+  </div>
+
+  <!-- Mothers Carousel -->
+  <div class="leaders-title">Mothers</div>
+  <div class="carousel-container" data-leaders='[
+    {"name":"Janette Bloomfield","img":"../assets-and-images/icons/temp-female-icon.svg"},
+    {"name":"Glemma White","img":"../assets-and-images/icons/temp-female-icon.svg"},
+    {"name":"Cordelia Barnett","img":"../assets-and-images/icons/temp-female-icon.svg"},
+    {"name":"Vashti Wilson","img":"../assets-and-images/icons/temp-female-icon.svg"},
+    {"name":"Fay Wright","img":"../assets-and-images/icons/temp-female-icon.svg"},
+    {"name":"Inez Manning","img":"../assets-and-images/icons/temp-female-icon.svg"}
+  ]'>
+    <div class="arrow-icon arrow-left">&#x276E;</div>
+    <div class="carousel-track"></div>
+    <div class="arrow-icon arrow-right">&#x276F;</div>
+  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  document.querySelectorAll('.carousel-container').forEach(container => {
+    const leaders = JSON.parse(container.dataset.leaders);
+    const track = container.querySelector('.carousel-track');
+    const prevBtn = container.querySelector('.arrow-left');
+    const nextBtn = container.querySelector('.arrow-right');
+
+    // Create cards
+    const cards = leaders.map(leader => {
+      const card = document.createElement('div');
+      card.className = 'leader-card';
+      card.innerHTML = `
+        <img src="${leader.img}" alt="${leader.name}" draggable="false" />
+        <div class="leader-info">
+          <div class="leader-name">${leader.name}</div>
+          <div class="ministry">${leader.ministry || ''}</div>
+        </div>
+      `;
+      track.appendChild(card);
+      return card;
+    });
+
+    let currentIndex = 0;
+    const total = cards.length;
+
+    function wrapIndex(i) {
+      return (i + total) % total;
+    }
+
+    function updateCarousel() {
+      // Animate cards horizontally with GSAP
+      // We want to center the currentIndex card in the middle of container width
+      const cardWidth = 180;
+      const gap = 15;
+      const containerWidth = container.clientWidth;
+      const centerPosition = (containerWidth / 2) - (cardWidth / 2);
+      const stepWidth = cardWidth + gap;
+
+      // Calculate x offset for track
+      // We want currentIndex card exactly at centerPosition
+      // So shift track left by (currentIndex * stepWidth) and then add centerPosition
+      // Actually track's left will be negative of currentIndex * stepWidth minus centerPosition
+      // But we move track by gsap to -currentIndex*stepWidth + centerPosition to align center card
+      // So final offset: centerPosition - currentIndex * stepWidth
+      const offsetX = centerPosition - (currentIndex * stepWidth);
+
+      gsap.to(track, {
+        x: offsetX,
+        duration: 0.5,
+        ease: 'power2.out'
+      });
+
+      // Now set scale and opacity for cards based on distance to currentIndex
+      cards.forEach((card, i) => {
+        let diff = i - currentIndex;
+
+        // Wrap difference to keep infinite carousel effect
+        if (diff < -total / 2) diff += total;
+        if (diff > total / 2) diff -= total;
+
+        if (diff === 0) {
+          // Center card
+          gsap.to(card, { scale: 1, opacity: 1, zIndex: 10, duration: 0.5 });
+        } else if (Math.abs(diff) === 1) {
+          gsap.to(card, { scale: 0.8, opacity: 0.7, zIndex: 5, duration: 0.5 });
+        } else if (Math.abs(diff) === 2) {
+          gsap.to(card, { scale: 0.6, opacity: 0.5, zIndex: 1, duration: 0.5 });
+        } else {
+          gsap.to(card, { scale: 0.4, opacity: 0, zIndex: 0, duration: 0.5 });
+        }
+      });
+    }
+
+    prevBtn.onclick = () => {
+      currentIndex = wrapIndex(currentIndex - 1);
+      updateCarousel();
+    };
+    nextBtn.onclick = () => {
+      currentIndex = wrapIndex(currentIndex + 1);
+      updateCarousel();
+    };
+
+    updateCarousel();
+  });
+</script>
+
+</body>
+</html>
+

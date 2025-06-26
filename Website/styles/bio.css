@@ -12,7 +12,7 @@
 }
 
 .pfp {
-  max-width: 500px;
+  width: 500px;
   height: auto;
   border-radius: 25px;
   margin-bottom: 20px;
@@ -75,11 +75,13 @@
     gap: 20px;
   }
 
-  .pfp {
+  .test {
     max-width: 300px;
-    margin-right: 30px;
+    max-height: 350px !important;
+    margin-right: 0px !important;
     margin-bottom: 0;
     border-radius: 8%;
+    background-position: center 25% !important;
   }
 
   .p-bio {

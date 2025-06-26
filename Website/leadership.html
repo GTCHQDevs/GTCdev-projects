@@ -10,92 +10,218 @@
   <link rel="icon" type="image/x-icon" href="/assets-and-images/favicon.ico">
 </head>
 <style>
+  .sec{
+  width: 100%;
+  min-height: 100vh;
+  padding: 60px clamp(1.5rem, 4vw, 6rem);
+  text-align: center;
+  background-color: #f9f9f9;
+  border: none;
+}
 
-  .officer-sec {
-    display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      max-width: 1200px;
-      background: #FDF2E9;
-      border-radius: 10px;
-  }
-
-  .leaders-title {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #9B1B30;
-      margin-bottom: 10px;
-  }
-
-  .leaders-container {
-      display: flex;
-      align-items: space-between;
-      overflow-x: auto;  
-      scroll-snap-type: x mandatory; 
-      gap: 15px;
-      padding: 10px;
-      max-width: 100%;
-      border-radius: 10px;
-      scrollbar-width: none; 
-  }
-
- 
-  .leaders-container::-webkit-scrollbar {
-      display: none;
-  }
-
-
-  .leader-card {
-    display: flex;
-      flex: 0 0 auto; 
-      flex-direction: column;
-      justify-content: space-between;
-      width: 200px; 
-      height: 275px;
-      text-align: center;
-      background: white;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      scroll-snap-align: start; /* Makes each card snap into place */
-  }
-
-  
-  .leader-card img {
-      width: 100%;
-      border-radius: 10px;
-      object-fit: cover;
-      height: 200px;
-  }
-
-
-  .leader-name {
-      font-size: 1em;
-      font-weight: bold;
-      color: #2D2D2D;
-      margin-top: 5px;
-  }
-
-  .leader-info {
-    letter-spacing: 2px;
-    display: flex;
-    flex-direction: column;
-  }
   @media (max-width: 450px) {
       .pfp{
         margin: 0px;
       }
+      .carousel-container {
+        width: 300px !important;
+        flex-direction: column;
+        overflow-x: hidden;
+      }
+          /* States for cards */
+    .leader-card.active {
+      transform: scale(0.7) !important;
+      filter: brightness(1);
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 10;
     }
-</style>
+
+    .leader-card.side {
+      transform: scale(0.5) !important;
+      filter: brightness(0.85);
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .leader-card.far-side {
+      transform: scale(0.3) !important;
+      filter: brightness(0.7);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
+    }
+    }
+  </style>
+  <style>
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+      background: #f3f3f3;
+      width: 100%;
+    }
+
+    .leaders-title {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #9B1B30;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    /* Container for each carousel */
+    .carousel-container {
+      position: relative;
+      width:700px;
+      height: 300px;
+      margin: 0 auto 3rem; /* bottom margin adds space between carousels */
+      overflow: hidden;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+    }
+
+    /* Track holding the cards */
+    .carousel-track {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.5s ease;
+      user-select: none;
+    }
+
+    .leader-card {
+      flex: 0 0 180px;
+      height: 250px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.5s ease, filter 0.5s ease, opacity 0.5s ease;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+    }
+
+    .leader-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px 12px 0 0;
+      pointer-events: none;
+    }
+
+    .leader-info {
+      padding: 5px;
+      font-size: 0.95rem;
+      color: #333;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .leader-name {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    /* States for cards */
+    .leader-card.active {
+      transform: scale(1) ;
+      filter: brightness(1);
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 10;
+    }
+
+    .leader-card.side {
+      transform: scale(0.75);
+      filter: brightness(0.85);
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .leader-card.far-side {
+      transform: scale(0.6);
+      filter: brightness(0.7);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+        .leader-card.far-side:first-child {
+      transform: scale(0.6) translateX(50px);
+      filter: brightness(0.7);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+        .leader-card.far-side:last-child{
+      transform: scale(0.6) translateX(-50px);
+      filter: brightness(0.7);
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Arrows on the side */
+    .arrow-icon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: #9B1B30;
+      color: white;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      z-index: 20;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .arrow-icon:hover {
+      background-color: #7e1627;
+    }
+
+    .arrow-left {
+      left: 10px;
+    }
+
+    .arrow-right {
+      right: 10px;
+    }
+
+  </style>
 <body>
   <div id="header"></div>
   <div class="temp-banner"></div>
   <main>
     <!-- Main Leaders-->
-     <!--Bishop's Bio-->
-    <div class="bio">
-      <img class="pfp" src="../assets-and-images/Bishop Picture.jpg">
+    
+    <div class="bio" id="bishop">  <!--Bishop's Bio-->
+      <div class="test" style="background-image: url(/assets-and-images/images/Bishop\ Picture.webp);
+      background-size: cover; background-position: center;
+      width: 400px; height: 525px;
+      margin-right: 30px;
+      border-radius: 25px;
+      "></div>
     <div class="p-bio">
       <h6 class="title">Presiding Bishop</h6>
       <h2 class="name">Kingsford Bloomfield</h2>
@@ -114,29 +240,123 @@
       </div>
     </div>
   </div>
-  <!-- Pastor's Bio -->
-    <div class="bio">
-      <div>
-        <img class="pfp" src="../assets-and-images/images/Elder-Kev-pic.webp">
-      </div>
+    <div class="bio" id="pastor">   <!-- Pastor's Bio -->
+      <div class="test" style="background-image: url(/assets-and-images/images/Elder-Kev-pic.webp);
+      background-size: cover; background-position: center;
+      width: 400px; height: 525px;
+      margin-right: 30px;
+      border-radius: 25px;
+      "></div>
+    
       <div class="p-bio">
         <h6 class="title">Pastor</h6>
         <h2 class="name">Elder Kevin Gayle</h2>
         <div>
         <p class="bio-info">Elder Kevin Gayle, a third-generation Apostolic preacher, was born in Manchester, Jamaica, WI and migrated with his family to Brooklyn, NY at the age of four. He spent 17 years under the leadership of the late, Apostle and Founder of the Gospel Tabernacle Church, Bishop Samuel Green II. During this time he accepted the Lord as his personal savior and was carefully nurtured in the gospel by his Pastor and the church family.</p>
-          <p class="bio-info">He currently serves as the Pastor of this ministry under the leadership of the current Presiding Bishop, Bishop Kingsford A. Bloomfield Sr.. Elder Gayle has served in various capacities in the ministry over the years. In particular, he has an intense desire to see youth enthused and fully engaged in the work of the Lord. This passion to see young people succeed has spilled over into his professional life, as he is employed as an Academic Counselor at the Kingsborough Community College. Elder Gayle holds a Bachelor's Degree in Health Science, a Master's Degree in Social Work, and a Master's Degree in Ministry. He is married to the one he calls, his "rib", Evangelist Sherlene Gayle; a powerful intercessor who stands by him all the way. God has blessed them with four wonderful children; Sarah, Khloe, Simon, and Nathan. He desires to do ALL that God has commissioned him to do and live that his life will bring glory to God in all things.</p>
+        <p class="bio-info">He currently serves as the Pastor of this ministry under the leadership of the current Presiding Bishop, Bishop Kingsford A. Bloomfield Sr.. Elder Gayle has served in various capacities in the ministry over the years. In particular, he has an intense desire to see youth enthused and fully engaged in the work of the Lord. This passion to see young people succeed has spilled over into his professional life, as he is employed as an Academic Counselor at the Kingsborough Community College. Elder Gayle holds a Bachelor's Degree in Health Science, a Master's Degree in Social Work, and a Master's Degree in Ministry. He is married to the one he calls, his "rib", Evangelist Sherlene Gayle; a powerful intercessor who stands by him all the way. God has blessed them with four wonderful children; Sarah, Khloe, Simon, and Nathan. He desires to do ALL that God has commissioned him to do and live that his life will bring glory to God in all things.</p>
         </div>
       </div>
     </div>
   <!-- Sr. Elder's Bio -->
-  <!-- Elder's Bio -->
+    <div class="bio" id="elder-wattson">   <!-- Elder's Bio -->
+      <div class="test" style="background-image: url(/assets-and-images/images/Elder-Watson.webp);
+      background-size: cover; background-position: center;
+      width: 400px; height: 525px;
+      margin-right: 30px;
+      border-radius: 25px;
+      "></div>
+    <div class="p-bio">
+      <h6 class="title">Elder</h6>
+      <h2 class="name">Elder Owen Wattson</h2>
+      <div>
+      <p class="bio-info">Elder Owen Wattson born in Saint Elizabeth, Jamaica, gave his life to the Lord in 1998 after being drawn deeper into the Apostolic faith. His walk with Christ has been shaped by the examples of others, a love for learning, and a desire to grow through both encouragement and correction.</p>
+      <p class="bio-info">At our church he serves as an Elder, where he leads the Men’s Department, teaches Sunday School, and assists with baptisms. Elder Wattson believes God has called him to preach, teach, and most importantly live a life that draws others to Christ.</p>
+      <p class="bio-info">He is supported in ministry by his wife, a prayerful partner in faith, and together they are raising their daughter Victoria to know and love the Lord by example both at home and in the church.</p>
+      </div>
+    </div>
+  </div>
   <!--Sr. Minister Bio-->
   <!--Officer's Section-->
+  <section class="sec officer-sec" id="officers">
+    <h1>Our Officers</h1>
+    <p>At GTC Snyder Avenue, our team is filled with passionate individuals with unique gifts, each committed to supporting and strengthening our church community. From our Bishop, Pastor, and Elders, down to every member plays a vital role in keeping our gears turning to create a place where faith grows, connections deepen, and lives change.</p>
+
+    <!--Officers Carousel -->
+  <!-- Deacons -->
+  <div class="leaders-title">Deacons</div>
+  <div class="carousel-container" data-leaders='[
+    { "name": "Bannister McKenzie", "img": "../assets-and-images/icons/temp-male-icon.svg" },
+    { "name": "Alphy Beckford", "img": "../assets-and-images/icons/temp-male-icon.svg" },
+    { "name": "Franklin Rose", "img": "../assets-and-images/icons/temp-male-icon.svg" },
+    { "name": "Herbert Riley", "img": "../assets-and-images/icons/temp-male-icon.svg" }
+  ]'>
+    <div class="arrow-icon arrow-left">&#x276E;</div>
+    <div class="carousel-track"></div>
+    <div class="arrow-icon arrow-right">&#x276F;</div>
+  </div>
+
+  <!-- Evangelists -->
+  <div class="leaders-title">Evangelists</div>
+  <div class="carousel-container" data-leaders='[
+    { "name": "Karlene Clarke", "img": "../assets-and-images/icons/temp-female-icon.svg" },
+    { "name": "Asha Grant", "img": "../assets-and-images/icons/temp-female-icon.svg", "ministry": "Missions Department" },
+    { "name": "Violet Cohen", "img": "../assets-and-images/icons/temp-female-icon.svg", "ministry": "Hospitality" },
+    { "name": "Naina Dunkley", "img": "../assets-and-images/icons/temp-female-icon.svg" },
+    { "name": "Sherlene Gayle", "img": "../assets-and-images/icons/temp-female-icon.svg", "ministry": "Youth Department" },
+    { "name": "Dorraine Watson", "img": "../assets-and-images/icons/temp-female-icon.svg", "ministry": "Womens Department" }
+  ]'>
+    <div class="arrow-icon arrow-left">&#x276E;</div>
+    <div class="carousel-track"></div>
+    <div class="arrow-icon arrow-right">&#x276F;</div>
+  </div>
+
+  <!-- Ministers -->
+  <div class="leaders-title">Ministers</div>
+  <div class="carousel-container" data-leaders='[
+    { "name": "Stacy-Ann Chambers", "img": "../assets-and-images/icons/temp-female-icon.svg" },
+    { "name": "Keneisha Harrison", "img": "../assets-and-images/icons/temp-female-icon.svg" },
+    { "name": "Doneila Sinclair", "img": "../assets-and-images/icons/temp-male-icon.svg", "ministry": "Mens Department" }
+  ]'>
+    <div class="arrow-icon arrow-left">&#x276E;</div>
+    <div class="carousel-track"></div>
+    <div class="arrow-icon arrow-right">&#x276F;</div>
+  </div>
+
+  <!-- Missionaries -->
+  <div class="leaders-title">Missionaries</div>
+  <div class="carousel-container" data-leaders='[
+    { "name": "Pauline Green", "img": "../assets-and-images/icons/temp-female-icon.svg" },
+    { "name": "Judy-Ann Brown", "img": "../assets-and-images/icons/temp-female-icon.svg" },
+    { "name": "Chaniel Thomas", "img": "../assets-and-images/icons/temp-female-icon.svg" }
+  ]'>
+    <div class="arrow-icon arrow-left">&#x276E;</div>
+    <div class="carousel-track"></div>
+    <div class="arrow-icon arrow-right">&#x276F;</div>
+  </div>
+
+  <!-- Mothers -->
+  <div class="leaders-title">Mothers</div>
+  <div class="carousel-container" data-leaders='[
+    { "name": "Janette Bloomfield", "img": "../assets-and-images/icons/temp-female-icon.svg" },
+    { "name": "Glemma White", "img": "../assets-and-images/icons/temp-female-icon.svg" },
+    { "name": "Cordelia Barnett", "img": "../assets-and-images/icons/temp-female-icon.svg" },
+    { "name": "Vashti Wilson", "img": "../assets-and-images/icons/temp-female-icon.svg" },
+    { "name": "Fay Wright", "img": "../assets-and-images/icons/temp-female-icon.svg" },
+    { "name": "Inez Manning", "img": "../assets-and-images/icons/temp-female-icon.svg" }
+  ]'>
+    <div class="arrow-icon arrow-left">&#x276E;</div>
+    <div class="carousel-track"></div>
+    <div class="arrow-icon arrow-right">&#x276F;</div>
+  </div>
+
+
+  </section>
   </main>
   <button onclick="topFunction()" id="backToTop" title="Go to top">
     <img class="btn-img"  src="/assets-and-images/backToTop.svg" alt="Back to Top">
   </button>
   <div id="footer"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="../scripts/include.js"></script>
   <script src="/scripts/menu.js"></script>
   <script>
@@ -163,5 +383,123 @@ function topFunction() {
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
   </script>
+    <script>
+    function initCarousel(container) {
+      const leaders = JSON.parse(container.dataset.leaders);
+      const track = container.querySelector('.carousel-track');
+      const prevBtn = container.querySelector('.arrow-left');
+      const nextBtn = container.querySelector('.arrow-right');
+
+      container._centerIndex = 0; // Start at 0 for better UX
+      const maxVisible = leaders.length > 4 ? 5 : 3;
+      const cardsNeeded = maxVisible;
+
+      // Clear track and create needed cards
+      track.innerHTML = '';
+      const cardElements = [];
+      for (let i = 0; i < cardsNeeded; i++) {
+        const card = document.createElement('div');
+        card.classList.add('leader-card');
+        card.innerHTML = `
+          <img src="" alt="" />
+          <div class="leader-info">
+            <div class="leader-name"></div>
+            <div class="ministry"></div>
+          </div>
+        `;
+        track.appendChild(card);
+        cardElements.push(card);
+      }
+
+      const wrapIndex = i => (i + leaders.length) % leaders.length;
+
+      function render() {
+        const centerIndex = container._centerIndex;
+
+        if (maxVisible === 3) {
+          // Show 3 cards: left, center, right
+          const left = wrapIndex(centerIndex - 1);
+          const center = centerIndex;
+          const right = wrapIndex(centerIndex + 1);
+
+          [left, center, right].forEach((idx, i) => {
+            const data = leaders[idx];
+            const card = cardElements[i];
+            card.className = 'leader-card'; // reset classes
+
+            card.querySelector('img').src = data.img;
+            card.querySelector('img').alt = data.name;
+            card.querySelector('.leader-name').textContent = data.name;
+            card.querySelector('.ministry').textContent = data.ministry || '';
+
+            if (i === 1) {
+              card.classList.add('active');
+            } else {
+              card.classList.add('side');
+            }
+
+            card.onclick = () => {
+              if (i !== 1) {
+                container._centerIndex = idx;
+                render();
+              }
+            };
+          });
+
+        } else {
+          // Show 5 cards: far-left, left, center, right, far-right
+          // Positions: 0 -> far-left, 1 -> left, 2 -> center, 3 -> right, 4 -> far-right
+          const positions = [
+            wrapIndex(centerIndex - 2),
+            wrapIndex(centerIndex - 1),
+            centerIndex,
+            wrapIndex(centerIndex + 1),
+            wrapIndex(centerIndex + 2)
+          ];
+
+          positions.forEach((idx, i) => {
+            const data = leaders[idx];
+            const card = cardElements[i];
+            card.className = 'leader-card'; // reset classes
+
+            card.querySelector('img').src = data.img;
+            card.querySelector('img').alt = data.name;
+            card.querySelector('.leader-name').textContent = data.name;
+            card.querySelector('.ministry').textContent = data.ministry || '';
+
+            // Assign classes based on position
+            if (i === 2) {
+              card.classList.add('active');
+            } else if (i === 1 || i === 3) {
+              card.classList.add('side');
+            } else {
+              card.classList.add('far-side');
+            }
+
+            card.onclick = () => {
+              if (i !== 2) {
+                container._centerIndex = idx;
+                render();
+              }
+            };
+          });
+        }
+      }
+
+      nextBtn.onclick = () => {
+        container._centerIndex = wrapIndex(container._centerIndex + 1);
+        render();
+      };
+      prevBtn.onclick = () => {
+        container._centerIndex = wrapIndex(container._centerIndex - 1);
+        render();
+      };
+
+      render();
+    }
+
+    document.querySelectorAll('.carousel-container').forEach(initCarousel);
+  </script>
+
 </body>
 </html>
