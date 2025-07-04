@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Church Leaders Carousel with Tabs</title>
+<style>
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f5f5f5;
+    margin: 0; padding: 20px;
+    color: #082a7b;
+  }
+  /* Tabs container */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  .tab {
+    cursor: pointer;
+    padding: 10px 20px;
+    font-weight: 700;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s;
+    user-select: none;
+  }
+  .tab.active {
+    border-color: #082a7b;
+    color: #082a7b;
+  }
+  /* Carousel container */
+  .carousel-container {
+    width: 600px;
+    max-width: 90vw;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+    perspective: 1200px;
+    user-select: none;
+  }
+  .carousel-track {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .card {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 180px;
+    height: 250px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: center;
+  }
+  .card img {
+    width: 100%;
+    height: auto;
+    flex-shrink: 0;
+  }
+  .leader-info {
+    padding: 10px;
+    background-color: #f0f0f0;
+  }
+  .leader-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #082a7b;
+  }
+  .ministry {
+    font-size: 0.9rem;
+    color: #444;
+  }
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #082a7b;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.5rem;
+    user-select: none;
+    z-index: 20;
+  }
+  .nav-arrow.left {
+    left: 10px;
+  }
+  .nav-arrow.right {
+    right: 10px;
+  }
+  @media (max-width: 700px) {
+    .carousel-container {
+      height: 280px;
+    }
+    .card {
+      width: 140px;
+      height: 210px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="carousel-container" id="carousel-container">
+  <div class="nav-arrow left" id="left-arrow">&#8249;</div>
+  <div class="carousel-track" id="carousel-track"></div>
+  <div class="nav-arrow right" id="right-arrow">&#8250;</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script>
+  const leaders = {
+    Deacons: [
+      { name: "Bannister McKenzie", img: "../assets-and-images/icons/temp-male-icon.svg" },
+      { name: "Alphy Beckford", img: "../assets-and-images/icons/temp-male-icon.svg" },
+      { name: "Franklin Rose", img: "../assets-and-images/icons/temp-male-icon.svg" },
+      { name: "Herbert Riley", img: "../assets-and-images/icons/temp-male-icon.svg" }
+    ],
+    Evangelists: [
+      { name: "Karlene Clarke", img: "../assets-and-images/icons/temp-female-icon.svg" },
+      { name: "Asha Grant", img: "../assets-and-images/icons/temp-female-icon.svg", ministry: "Missions Department" },
+      { name: "Violet Cohen", img: "../assets-and-images/icons/temp-female-icon.svg", ministry: "Hospitality" },
+      { name: "Naina Dunkley", img: "../assets-and-images/icons/temp-female-icon.svg" },
+      { name: "Sherlene Gayle", img: "../assets-and-images/icons/temp-female-icon.svg", ministry: "Youth Department" },
+      { name: "Dorraine Watson", img: "../assets-and-images/icons/temp-female-icon.svg", ministry: "Womens Department" }
+    ],
+    Ministers: [
+      { name: "Stacy-Ann Chambers", img: "../assets-and-images/icons/temp-female-icon.svg" },
+      { name: "Keneisha Harrison", img: "../assets-and-images/icons/temp-female-icon.svg" },
+      { name: "Doneila Sinclair", img: "../assets-and-images/icons/temp-male-icon.svg", ministry: "Mens Department" }
+    ],
+    Missionaries: [
+      { name: "Pauline Green", img: "../assets-and-images/icons/temp-female-icon.svg" },
+      { name: "Judy-Ann Brown", img: "../assets-and-images/icons/temp-female-icon.svg" },
+      { name: "Chaniel Thomas", img: "../assets-and-images/icons/temp-female-icon.svg" }
+    ],
+    Mothers: [
+      { name: "Janette Bloomfield", img: "../assets-and-images/icons/temp-female-icon.svg" },
+      { name: "Glemma White", img: "../assets-and-images/icons/temp-female-icon.svg" },
+      { name: "Cordelia Barnett", img: "../assets-and-images/icons/temp-female-icon.svg" },
+      { name: "Vashti Wilson", img: "../assets-and-images/icons/temp-female-icon.svg" },
+      { name: "Fay Wright", img: "../assets-and-images/icons/temp-female-icon.svg" },
+      { name: "Inez Manning", img: "../assets-and-images/icons/temp-female-icon.svg" }
+    ],
+  };
+
+  const tabsContainer = document.getElementById('tabs');
+  const carouselTrack = document.getElementById('carousel-track');
+  const leftArrow = document.getElementById('left-arrow');
+  const rightArrow = document.getElementById('right-arrow');
+
+  let currentGroup = 'Deacons';
+  let currentIndex = 0;
+  let cards = [];
+
+  // Create tabs
+  Object.keys(leaders).forEach((group, i) => {
+    const tab = document.createElement('div');
+    tab.classList.add('tab');
+    if(i === 0) tab.classList.add('active');
+    tab.textContent = group;
+    tab.addEventListener('click', () => {
+      if(currentGroup !== group) {
+        currentGroup = group;
+        currentIndex = 0;
+        updateTabs();
+        renderCarousel();
+      }
+    });
+    tabsContainer.appendChild(tab);
+  });
+
+  function updateTabs() {
+    const tabs = tabsContainer.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+      tab.classList.toggle('active', tab.textContent === currentGroup);
+    });
+  }
+
+  function renderCarousel() {
+    carouselTrack.innerHTML = '';
+    const groupMembers = leaders[currentGroup];
+    groupMembers.forEach((leader, i) => {
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.dataset.index = i;
+      card.innerHTML = `
+        <img src="${leader.img}" alt="${leader.name}" draggable="false" />
+        <div class="leader-info">
+          <div class="leader-name">${leader.name}</div>
+          <div class="ministry">${leader.ministry || ''}</div>
+        </div>
+      `;
+      card.addEventListener('click', () => {
+        if (currentIndex !== i) {
+          currentIndex = i;
+          updateCarousel();
+        }
+      });
+      carouselTrack.appendChild(card);
+    });
+    cards = carouselTrack.querySelectorAll('.card');
+    updateCarousel();
+  }
+
+  const cardWidth = 180;
+  const positions5 = [
+    { x: -260, scale: 0.7, zIndex: 1, opacity: 0.4, rotationY: 30 },
+    { x: -140, scale: 0.85, zIndex: 5, opacity: 0.7, rotationY: 15 },
+    { x: 0, scale: 1, zIndex: 10, opacity: 1, rotationY: 0 },
+    { x: 140, scale: 0.85, zIndex: 5, opacity: 0.7, rotationY: -15 },
+    { x: 260, scale: 0.7, zIndex: 1, opacity: 0.4, rotationY: -30 }
+  ];
+
+  const positions4 = [
+    { x: -200, scale: 0.8, zIndex: 3, opacity: 0.6, rotationY: 20 },
+    { x: -70, scale: 0.95, zIndex: 6, opacity: 0.85, rotationY: 8 },
+    { x: 70, scale: 0.95, zIndex: 6, opacity: 0.85, rotationY: -8 },
+    { x: 200, scale: 0.8, zIndex: 3, opacity: 0.6, rotationY: -20 }
+  ];
+
+  const positions3 = [
+    { x: -120, scale: 0.9, zIndex: 5, opacity: 0.7, rotationY: 15 },
+    { x: 0, scale: 1, zIndex: 10, opacity: 1, rotationY: 0 },
+    { x: 120, scale: 0.9, zIndex: 5, opacity: 0.7, rotationY: -15 }
+  ];
+
+  function updateCarousel() {
+    const count = cards.length;
+    let positions;
+    if (count === 3) positions = positions3;
+    else if (count === 4) positions = positions4;
+    else positions = positions5;
+
+    cards.forEach((card, i) => {
+      card.style.display = 'block';
+      const offset = (i - currentIndex + count) % count;
+      const pos = positions[offset] || { x: 0, scale: 0, zIndex: 0, opacity: 0 };
+
+      gsap.to(card, {
+        duration: 0.6,
+        left: '50%',
+        x: pos.x - cardWidth / 2,
+        scale: pos.scale,
+        zIndex: pos.zIndex,
+        opacity: pos.opacity,
+        rotationY: pos.rotationY,
+        ease: 'power3.out',
+        onComplete: () => {
+          if (pos.opacity === 0) card.style.display = 'none';
+        }
+      });
+    });
+  }
+
+  leftArrow.addEventListener('click', () => {
+    const count = cards.length;
+    currentIndex = (currentIndex - 1 + count) % count;
+    updateCarousel();
+  });
+
+  rightArrow.addEventListener('click', () => {
+    const count = cards.length;
+    currentIndex = (currentIndex + 1) % count;
+    updateCarousel();
+  });
+
+  renderCarousel();
+</script>
+
+</body>
+</html>
