@@ -48,17 +48,13 @@
 }
 
 .welcome-sec {
-  margin-top: 20px; 
   padding: 50px min(4.5em, 6%);
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  border-style: dotted;
-  border-width: 1px;
   border-radius: 16px;
-  margin-bottom: 40px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.05);
  }
 
@@ -69,7 +65,6 @@
   justify-content: center;
   text-align: center;
   width: min(100%, 600px);
-  border: 1px solid #ccc;
   padding: 25px;
   box-sizing: border-box;
 }
@@ -102,10 +97,7 @@
   text-align: start;
   justify-content: center;
   align-items: center;
-  border-style: dotted;
-  border-width: 1px;
   border-radius: 16px;
-  margin-bottom: 40px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
@@ -117,8 +109,6 @@
   display: flex;
   flex-direction: column;
   padding: 50px min(4.5em, 6%);
-  border-style: dotted;
-  border-width: 1px;
   justify-content: start;
   align-items: center;
   text-align: center;
@@ -127,6 +117,44 @@
   background-position: center;
   box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
+
+.temp-sec{
+  padding: 50px min(4.5em, 6%);
+  position: relative;
+  display: block;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  background-color: #eeeeee;
+}
+.sec-container.s3{
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.sec-container .s3{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: min(100%, 600px);
+  border: 1px solid #ccc;
+  padding: 20px min(2em, 4%);
+  box-sizing: border-box;
+}
+.sec-container.s3 h1{
+  font-size: clamp(2rem, 4vw, 4rem);
+  text-align: center;
+}
+.info-s3{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-width: 450px;
+}
+
 
 .verse-sec h1 {
   font-size: clamp(2rem, 4vw, 4rem);
@@ -164,4 +192,15 @@
   .spic {
     filter: invert(13%) sepia(88%) saturate(7491%) hue-rotate(0deg) brightness(97%) contrast(107%);
   }
+  .sec-container.s3{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.info-s3{
+  width: 350px !important;
+
+}
 }

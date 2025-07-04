@@ -98,6 +98,7 @@
             <div class="mySlides" style="background-image: url('/assets-and-images/ss-choir.jpg');"></div>
             <div class="mySlides" style="background-image: url('/assets-and-images/sanctuary.jpg');"></div>
             <div class="mySlides" style="background-image: url('/assets-and-images/images/youth-mmchoir.webp');"></div>
+            <div class="mySlides" style="background-image: url('/assets-and-images/images/pastorSlideshow.webp');"></div>
       </div>
       
     <main>
@@ -128,7 +129,22 @@
         </div>
         <div class="welcome-pic"></div>
       </section>
-      </section>
+       <section class="temp-sec">
+        <div class="sec-container s3">
+          <div style="max-width: 100%; width: 100%;aspect-ratio: 16/9; ">
+            <img src="/assets-and-images/images/ihc25 1920.webp" alt="GTC Snyder" style="width: 100%; height: auto;display: block; object-fit: cover; border-radius: 16px;">
+          </div>
+          <div class="info-s3">
+            <h1>International Holy Convocation</h1>
+            <p class="topic" style="font-size: 20px;
+              color: transparent; background-image: linear-gradient(180deg, #e0dcd2, #dcba4b);background-clip: text;">"Sealed With a Promise"</p>
+            <p class="verse" style="color:#f8d973">Ephesians 1:1-14</p>
+            <p class="details" style="width: 100%; line-height: 2.5rem;">Join us for a transformative experience at our International Holy Convocation.</p>
+
+          </div>
+
+        </div>
+       </section>
       <section class="events-sec">
           <h1>Upcoming Events</h1>
           <div id="events-container" class="event-container"></div>
@@ -138,7 +154,6 @@
           <blockquote id="verse-text" style="background: #00000027; color: #f9f9f9; letter-spacing: 5px;  font-size: clamp(1rem, 1.2vw, 3.4rem);    ">Loading...</blockquote>
           <p id="verse-reference" style="font-weight: bold; color: #ffd369; letter-spacing: 5px;  font-size: clamp(1.4rem, 1.4vw, 3.6rem);"></p>
       </section>
-      <section></section>
     </main>
     <button onclick="topFunction()" id="backToTop" title="Go to top">
         <img class="btn-img"  src="/assets-and-images/backToTop.svg" alt="Back to Top">
@@ -193,27 +208,28 @@
           document.getElementById("verse-text").textContent = "Verse not available.";
         });
     </script>
-    <script> // Events Section script //
+<script> // Events Section script //
 document.addEventListener('DOMContentLoaded', () => {
     
     fetch('/json/featured-events.json')
         .then(response => response.json())
         .then(events => {
             const today = new Date();
-            console.log("Loaded events:", events); // For debugging
+            today.setHours(0,0,0,0); // Normalize for comparison
 
-            // Improved parseDate function
+            // Enhanced parseDate function for ranges
             function parseDate(whenString) {
                 const currentYear = new Date().getFullYear();
 
-               
+                // Match ranges like "July 2 - July 5" or "July 30 - August 2"
                 const rangeMatch = whenString.match(/([A-Za-z]+)\s+(\d+)\s*-\s*([A-Za-z]+)?\s*(\d+)/);
                 if (rangeMatch) {
                     const [, startMonth, startDay, endMonth, endDay] = rangeMatch;
-                    const month = startMonth; // Use start month for date sorting
-                    const day = startDay;
-                    const date = new Date(`${month} ${day}, ${currentYear}`);
-                    return isNaN(date.getTime()) ? null : date;
+                    const start = new Date(`${startMonth} ${startDay}, ${currentYear}`);
+                    const end = new Date(`${endMonth ? endMonth : startMonth} ${endDay}, ${currentYear}`);
+                    start.setHours(0,0,0,0);
+                    end.setHours(0,0,0,0);
+                    return { startDate: start, endDate: end };
                 }
 
                 // Handle single dates like "July 20"
@@ -221,10 +237,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (singleMatch) {
                     const [, monthName, day] = singleMatch;
                     const date = new Date(`${monthName} ${day}, ${currentYear}`);
-                    return isNaN(date.getTime()) ? null : date;
+                    date.setHours(0,0,0,0);
+                    return { startDate: date, endDate: date };
                 }
 
                 return null;
+            }
+
+            // Check if today is within the event's date range
+            function isEventActiveToday(event) {
+                if (!event.date) return false;
+                return today >= event.date.startDate && today <= event.date.endDate;
             }
 
             const upcomingEvents = events
@@ -232,8 +255,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     ...event,
                     date: parseDate(event.when)
                 }))
-                .filter(event => event.date && event.date >= today)
-                .sort((a, b) => a.date - b.date)
+                .filter(isEventActiveToday)
+                .sort((a, b) => a.date.startDate - b.date.startDate)
                 .slice(0, 3);
 
             const container = document.getElementById('events-container');
