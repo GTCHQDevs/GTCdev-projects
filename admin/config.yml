@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: main
+  branch: origin/gh-pages
 
 media_folder: "assets-and-images/images"
 public_folder: "/assets-and-images/content"
